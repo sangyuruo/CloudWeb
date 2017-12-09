@@ -121,7 +121,7 @@ jhipster:
         default-include-pattern: /api/.*
         title: EmCloudWeb API
         description: EmCloudWeb API documentation
-        version: 0.0.example.component.ts
+        version: 0.0.1
         terms-of-service-url:
         contact-name:
         contact-url:

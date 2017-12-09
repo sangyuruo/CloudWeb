@@ -31,7 +31,7 @@ export class TabsComponent {
 
   tabs: any[] = [
     {
-      title: 'Route tab #example.component.ts',
+      title: 'Route tab #1',
       route: '/pages/ui-features/tabs/tab1',
     },
     {

@@ -29,7 +29,7 @@ import io.github.jhipster.config.JHipsterProperties;
  *
  * See the Bucket4j documentation at https://github.com/vladimir-bukhtoyarov/bucket4j
  * https://github.com/vladimir-bukhtoyarov/bucket4j/blob/master/doc-pages/jcache-usage
- * .md#example-example.component.ts---limiting-access-to-http-server-by-ip-address
+ * .md#example-1---limiting-access-to-http-server-by-ip-address
  */
 public class RateLimitingFilter extends ZuulFilter {
 

@@ -27,7 +27,7 @@ export class JhiLanguageHelper {
     /**
      * Update the window title using params in the following
      * order:
-     * example.component.ts. titleKey parameter
+     * 1. titleKey parameter
      * 2. $state.$current.data.pageTitle (current state page title)
      * 3. 'global.title'
      */

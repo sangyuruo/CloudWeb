@@ -11,7 +11,7 @@ import { ITEMS_PER_PAGE } from '../../../../../../main/webapp/app/shared';
 function getDate(isToday= true) {
     let date: Date = new Date();
     if (isToday) {
-        // Today + example.component.ts day - needed if the current day must be included
+        // Today + 1 day - needed if the current day must be included
         date.setDate(date.getDate() + 1);
     } else {
       // get last month

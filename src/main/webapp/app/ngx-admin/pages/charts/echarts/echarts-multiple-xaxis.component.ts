@@ -66,7 +66,7 @@ export class EchartsMultipleXaxisComponent implements AfterViewInit, OnDestroy {
               },
             },
             data: [
-              '2016-example.component.ts',
+              '2016-1',
               '2016-2',
               '2016-3',
               '2016-4',
@@ -106,7 +106,7 @@ export class EchartsMultipleXaxisComponent implements AfterViewInit, OnDestroy {
               },
             },
             data: [
-              '2015-example.component.ts',
+              '2015-1',
               '2015-2',
               '2015-3',
               '2015-4',

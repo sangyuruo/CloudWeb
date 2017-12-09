@@ -21,7 +21,7 @@ export class ChartjsBarHorizontalComponent implements OnDestroy {
       this.data = {
         labels: ['January', 'February', 'March', 'April', 'May', 'June'],
         datasets: [{
-            label: 'Dataset example.component.ts',
+            label: 'Dataset 1',
             backgroundColor: colors.infoLight,
             borderWidth: 1,
             data: [this.random(), this.random(), this.random(), this.random(), this.random(), this.random()],

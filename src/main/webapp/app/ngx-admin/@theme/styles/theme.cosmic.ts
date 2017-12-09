@@ -39,7 +39,7 @@ export const COSMIC_THEME = {
 
     electricity: {
       tooltipBg: 'rgba(0, 255, 170, 0.35)',
-      tooltipLineColor: 'rgba(255, 255, 255, 0.example.component.ts)',
+      tooltipLineColor: 'rgba(255, 255, 255, 0.1)',
       tooltipLineWidth: '1',
       tooltipBorderColor: '#00d977',
       tooltipExtraCss: 'box-shadow: 0px 2px 46px 0 rgba(0, 255, 170, 0.35); border-radius: 10px; padding: 8px 24px;',

@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class SecurityCamerasComponent {
 
   cameras: any[] = [{
-    title: 'Camera #example.component.ts',
+    title: 'Camera #1',
     source: 'assets/images/camera1.jpg',
   }, {
     title: 'Camera #2',
