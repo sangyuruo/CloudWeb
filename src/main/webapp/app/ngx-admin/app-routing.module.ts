@@ -7,9 +7,9 @@ const routes: Routes = [
   {
     path: 'pages', loadChildren: () => new Promise(resolve => {(require as any).ensure([], require => {resolve(require('./pages/pages.module').PagesModule); }) })
   },
-    /*{ path: '', redirectTo: 'auth/login', pathMatch: 'full' },*///浏览器页面加载后跳转到登入页面
-  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
-  { path: '**', redirectTo: 'auth/login' },
+
+    { path: '', redirectTo:'auth/login',pathMatch: 'full' },//浏览器页面加载后跳转到登入页面
+  { path: '**', redirectTo:'auth/login'},
 ];
 
 const config: ExtraOptions = {

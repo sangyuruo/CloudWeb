@@ -39,15 +39,47 @@ const routes: Routes = [{
     loadChildren: () => new Promise(resolve => {
       (require as any).ensure([], require => {resolve(require('./tables/tables.module').TablesModule); })  })
   },{
-      path: 'tables1',
+      path: 'ou',
       loadChildren: () => new Promise(resolve => {
-          (require as any).ensure([], require => {resolve(require('./tables1/tables.module').TablesModule); })  })
+
+          (require as any).ensure([], require => {resolve(require('./ou/ou.module').TablesModule); })  })
   }, /*{
       path: 'auth',
       loadChildren: () => new Promise(resolve => {
           (require as any).ensure([], require => {resolve(require('./auth/auth.module').NgxAuthModule); })  })
   },*/
       {
+      path: 'dict',
+      loadChildren: () => new Promise(resolve => {
+          (require as any).ensure([], require => {resolve(require('./dict/dict.module').TablesModule); })  })
+  },
+      {
+          path: 'cpi',
+          loadChildren: () => new Promise(resolve => {
+              (require as any).ensure([], require => {resolve(require('./cpi/tables.module').TablesModule); })  })
+      },
+      {
+          path: 'loc',
+          loadChildren: () => new Promise(resolve => {
+              (require as any).ensure([], require => {resolve(require('./loc/tables.module').TablesModule); })  })
+      }, {
+      path: 'mi',
+      loadChildren: () => new Promise(resolve => {
+          (require as any).ensure([], require => {resolve(require('./mi/mi.module').TablesModule); })  })
+  }, {
+      path: 'arc',
+      loadChildren: () => new Promise(resolve => {
+          (require as any).ensure([], require => {resolve(require('./arc/arc.module').arcTablesModule); })  })
+  },{
+      path: 'resource',
+      loadChildren: () => new Promise(resolve => {
+          (require as any).ensure([], require => {resolve(require('./resource/resource.module').TablesModule); })  })
+  },{
+          path: 'nfs',
+          loadChildren: () => new Promise(resolve => {
+              (require as any).ensure([], require => {resolve(require('./nfs/nfs.module').TablesModule); })  })
+      }, {
+
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',

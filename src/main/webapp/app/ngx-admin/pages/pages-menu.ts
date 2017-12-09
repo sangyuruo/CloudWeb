@@ -133,18 +133,135 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
     ],
   },
+
     {
-        title: 'Tables1',
+        title: 'OU',
+        icon: 'nb-tables',
+        children: [
+        {
+            title: '公司',
+            link: '/pages/ou/company',
+
+        },
+        {
+            title: '组织',
+            link: '/pages/ou/organization',
+
+        },
+        ],
+    },
+
+    {
+        title: '设备管理',
         icon: 'nb-tables',
         children: [
             {
-                title: 'Smart Table',
-                link: '/pages/tables1/smart-table',
+                title: '设备分类信息',
+                link: '/pages/mi/MeterCategoryInfo',
             },
             {
-                title: 'Smart Table1',
-                link: '/pages/tables1/smarttable1',
+                title: '设备信息',
+                link: '/pages/mi/MeterInfo',
+            },
+            {
+                title: '设备状态',
+                link: '/pages/mi/MeterStatus',
+            },
+            {
+                title: '多路开关信息',
+                link: '/pages/mi/multiwaySwitchInfo',
+            },
+            {
+                title: '多路开关状态',
+                link: '/pages/mi/MultiwaySwitch',
+            },
+        ],
 
+    },
+    {
+        title: '报警服务',
+        icon: 'nb-tables',
+        children: [
+            {
+                title: '报警服务规则',
+                link: '/pages/arc/AlarmRule',
+            },
+            {
+                title: '设备规则',
+                link: '/pages/arc/MeterRule',
+            },
+            {
+                title: '规则属性',
+                link: '/pages/arc/RuleAttributes',
+            },
+
+        ],
+    },
+    {
+        title: 'Nfs',
+        icon: 'nb-tables',
+        children: [
+            {
+                title: 'MessageTemplate',
+                link: '/pages/nfs/message-template',
+            },
+        ],
+    },
+    {
+        title: '资源管理',
+        icon: 'nb-tables',
+        children: [
+            {
+                title: '资源管理',
+                link: '/pages/resource/Resource',
+            },
+        ],
+    },
+
+
+    {
+        title: '字典工程',
+        icon: 'nb-tables',
+        children: [
+            {
+                title: 'dictionary',
+                link: '/pages/dict/dictionary',
+            },
+
+            {
+                title: 'dictionaryClassify',
+                link: '/pages/dict/DictionaryClassify',
+            },
+        ],
+    },
+    {
+        title: '信息点采集',
+        icon: 'nb-tables',
+        children: [
+            {
+                title: 'comPoint',
+                link: '/pages/cpi/comPoint',
+            },
+
+            {
+                title: 'comPointStatus',
+                link: '/pages/cpi/ComPointStatus',
+            },
+        ],
+    },
+
+    {
+        title: '地区地点',
+        icon: 'nb-tables',
+        children: [
+            {
+                title: 'address',
+                link: '/pages/loc/address',
+            },
+
+            {
+                title: 'area',
+                link: '/pages/loc/area',
             },
         ],
     },
