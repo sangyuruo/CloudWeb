@@ -42,7 +42,12 @@ const routes: Routes = [{
       path: 'tables1',
       loadChildren: () => new Promise(resolve => {
           (require as any).ensure([], require => {resolve(require('./tables1/tables.module').TablesModule); })  })
-  }, {
+  }, /*{
+      path: 'auth',
+      loadChildren: () => new Promise(resolve => {
+          (require as any).ensure([], require => {resolve(require('./auth/auth.module').NgxAuthModule); })  })
+  },*/
+      {
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',

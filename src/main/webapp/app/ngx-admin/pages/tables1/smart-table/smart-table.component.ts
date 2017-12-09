@@ -75,6 +75,22 @@ export class SmartTableComponent implements OnInit {
             companyName: {
                 title: 'Company Name',
                 type: 'string',
+                filter: {
+                    type: 'list',
+                    config: {
+                        selectText: 'Select...',
+                        list:[
+
+                        ]
+                            /*{ value: 'Glenna Reichert', title: 'Glenna Reichert' },
+                            { value: 'Kurtis Weissnat', title: 'Kurtis Weissnat' },
+                            { value: 'Chelsey Dietrich', title: 'Chelsey Dietrich' },*/
+
+
+
+
+                    },
+                },
             },
             parentCompanyName: {
                 title: 'Parent CompanyName',
@@ -155,6 +171,7 @@ export class SmartTableComponent implements OnInit {
     source: LocalDataSource = new LocalDataSource();
 
 
+    companies;
     constructor(private service: SmartTableService,
                 private http: Http,
                 private eventManager: JhiEventManager,) {
@@ -165,7 +182,15 @@ export class SmartTableComponent implements OnInit {
             .subscribe(data => (this.source.load(data)) )*/
         //this.service.getData1().subscribe(data => (this.source.load(data)))
 
+        //添加list
+
+            this.http.get('/emcloudou/api/companies?size=2000')
+                .map(res=>res.json()).subscribe(data=>{this.companies=data})
+
     }
+
+
+
 
     ngOnInit() {
         this.service.getData1().subscribe(data => (this.source.load(data)));

@@ -51,13 +51,8 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'nb-compose',
     children: [
       {
-        title: 'Form Inputs',
-          icon: 'nb-compose',
-          children: [
-              {
-                  title: '子菜单',
-                  link: '/pages/forms/example/son'
-              },]
+            title: 'Form input',
+            link: '/pages/forms/input',
       },
       {
         title: 'Form Layouts',

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 
 import { PagesComponent } from './pages.component';
 import { DashboardModule } from './dashboard/dashboard.module';
@@ -17,6 +17,9 @@ const PAGES_COMPONENTS = [
     ThemeModule,
     DashboardModule,
   ],
+    //添加auth
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+
   declarations: [
     ...PAGES_COMPONENTS,
   ],
