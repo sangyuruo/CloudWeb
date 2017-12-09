@@ -112,7 +112,7 @@ export class HeroButtonComponent implements OnDestroy {
         border: colors.primary,
         bevel: '#665ebd',
         shadow: 'rgba (33, 7, 77, 0.5)',
-        glow: 'rgba (146, 141, 255, 1)',
+        glow: 'rgba (146, 141, 255, example.component.ts)',
       },
     }];
   }

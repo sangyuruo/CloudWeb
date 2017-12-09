@@ -40,7 +40,7 @@ export class AdvancedExamplesCustomEditorComponent {
 
   settings = {
     columns: {
-      id: {
+      id: {·
         title: 'ID',
       },
       name: {

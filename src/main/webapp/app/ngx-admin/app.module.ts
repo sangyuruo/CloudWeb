@@ -9,7 +9,7 @@ import './typings.d.ts';
 import { APP_BASE_HREF } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { CoreModule } from './@core/core.module';
 
@@ -19,66 +19,117 @@ import { ThemeModule } from './@theme/theme.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
+//添加
+import {NB_AUTH_TOKEN_WRAPPER_TOKEN, NbAuthJWTToken, NbEmailPassAuthProvider} from '@nebular/auth';
+import {NgxAuthModule} from "./pages/auth/auth.module";
 
-//添加
-import { NB_AUTH_TOKEN_WRAPPER_TOKEN, NbAuthJWTToken } from '@nebular/auth';
-//添加
-import { NbEmailPassAuthProvider, NbAuthModule } from '@nebular/auth';
-//添加
-const formSetting: any = {
+
+/*const formSetting: any = {
     redirectDelay: 0,
     showMessages: {
         success: true,
     },
-};
+};*/
 
 @NgModule({
   declarations: [AppComponent],
+    //添加auth
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpModule,
     AppRoutingModule,
 
+
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
     CoreModule.forRoot(),
 
       //添加
-      NbAuthModule.forRoot({
+      NgxAuthModule.forRoot({
           providers: {
               email: {
                   service: NbEmailPassAuthProvider,
                   config: {
                       baseEndpoint: '',
                       login: {
+                          rememberMe: true,
                           endpoint: '/auth/login',
                           method: 'post',
                           redirect: {
-                              success: '/pages',
+                              success: '/',
                               failure: null,
                           },
+                          errors: ['Login/Email combination is not correct, please try again.'],
+                          messages: ['successfully logged in.'],
                       },
                       register: {
-                          endpoint: '/api/auth/register',
+                          alwaysFail: false,
+                          rememberMe: true,
+                          endpoint: 'emclouduaa/api/register',
                           method: 'post',
+                          redirect: {
+                              success: '/auth/login',
+                              failure: null,
+                          },
+                          errors: ['Something went wrong, please try again.'],
+                          messages: ['You have been successfully registered.'],
                       },
                       logout: {
-                          endpoint: '/api/auth/logout',
-                          method: 'post',
+                          alwaysFail: false,
+                          endpoint: '/auth/logout',
+                          method: 'delete',
+                          redirect: {
+                              success: '/auth/login',
+                              failure: null,
+                          },
+                          defaultErrors: ['Something went wrong, please try again.'],
+                          messages: ['You have been successfully logged out.'],
                       },
                       requestPass: {
-                          endpoint: '/api/auth/request-pass',
+                          endpoint: '/auth/request-pass',
                           method: 'post',
+                          redirect: {
+                              success: '/',
+                              failure: null,
+                          },
+                          errors: ['Something went wrong, please try again.'],
+                          messages: ['Reset password instructions have been sent to your email.'],
                       },
                       resetPass: {
-                          endpoint: '/api/auth/reset-pass',
+                          endpoint: '/auth/reset-pass',
                           method: 'post',
+                          redirect: {
+                              success: '/',
+                              failure: null,
+                          },
+                          resetPasswordTokenKey: 'reset_password_token',
+                          errors: ['Something went wrong, please try again.'],
+                          messages: ['Your password has been successfully changed.'],
                       },
+                      /*token: {
+                          key: 'data.token',
+                          getter: (module: string, res: HttpResponse<Object>) => getDeepFromObject(res.body,
+                              this.getConfigValue('token.key')),
+                      },
+                      errors: {
+                          key: 'data.errors',
+                          getter: (module: string, res: HttpErrorResponse) => getDeepFromObject(res.error,
+                              this.getConfigValue('errors.key'),
+                              this.getConfigValue(`${module}.defaultErrors`)),
+                      },
+                      messages: {
+                          key: 'data.messages',
+                          getter: (module: string, res: HttpResponse<Object>) => getDeepFromObject(res.body,
+                              this.getConfigValue('messages.key'),
+                              this.getConfigValue(`${module}.defaultMessages`)),
+                      },
+*/
                   },
               },
           },
-          forms: {
+          /*forms: {
               login: formSetting,
               register: formSetting,
               requestPassword: formSetting,
@@ -86,7 +137,7 @@ const formSetting: any = {
               logout: {
                   redirectDelay: 0,
               },
-          },
+          },*/
       }),
   ],
   bootstrap: [AppComponent],
@@ -97,4 +148,5 @@ const formSetting: any = {
   ],
 })
 export class EmCloudWebNgxAppModule {
+
 }

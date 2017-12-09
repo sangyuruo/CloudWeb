@@ -29,7 +29,7 @@ export class EchartsLineComponent implements AfterViewInit, OnDestroy {
         },
         legend: {
           left: 'left',
-          data: ['Line 1', 'Line 2', 'Line 3'],
+          data: ['Line example.component.ts', 'Line 2', 'Line 3'],
           textStyle: {
             color: echarts.textColor,
           },
@@ -81,7 +81,7 @@ export class EchartsLineComponent implements AfterViewInit, OnDestroy {
         },
         series: [
           {
-            name: 'Line 1',
+            name: 'Line example.component.ts',
             type: 'line',
             data: [1, 3, 9, 27, 81, 247, 741, 2223, 6669],
           },

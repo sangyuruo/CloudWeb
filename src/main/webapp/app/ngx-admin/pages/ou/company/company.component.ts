@@ -69,6 +69,7 @@ export class SmartTableComponent {
              },*/
             companyName: {
                 title: '公司名',
+
                 type: 'html',
                 editor: {
                     type: 'list',
@@ -79,6 +80,7 @@ export class SmartTableComponent {
                             { value: 'Kurtis Weissnat', title: 'Kurtis Weissnat' },
                             { value: 'Chelsey Dietrich', title: 'Chelsey Dietrich' },
                         ],
+
                     },
                 },
             },
@@ -150,16 +152,18 @@ export class SmartTableComponent {
     };
 
     source: LocalDataSource = new LocalDataSource();
+
     isSaving:boolean;
     constructor(private service: OuService,
                 private http:Http,
                 private eventManager:JhiEventManager
     ) {
-        //const data = this.service.getData();
-        //this.source.load(data);
-        /*this.http.get('/emcloudou/api/companies')
-            .map(res => res.json())
-            .subscribe(data => (this.source.load(data)) )*/
+    }
+
+
+
+
+    ngOnInit() {
         this.service.getCompany().subscribe(data => (this.source.load(data)))
 
     }

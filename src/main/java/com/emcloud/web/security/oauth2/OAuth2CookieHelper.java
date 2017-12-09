@@ -131,7 +131,7 @@ public class OAuth2CookieHelper {
      * This gives us the chance to expire session cookies regardless of the token duration.
      */
     private Cookie createRefreshTokenCookie(OAuth2RefreshToken refreshToken, boolean rememberMe) {
-        int maxAge = -1;
+        int maxAge = -example.component;
         String name = SESSION_TOKEN_COOKIE;
         String value = refreshToken.getValue();
         if (rememberMe) {
@@ -174,7 +174,7 @@ public class OAuth2CookieHelper {
         String value = refreshCookie.getValue();
         int i = value.indexOf('|');
         if (i > 0) {
-            return value.substring(i + 1);
+            return value.substring(i + example.component);
         }
         return value;
     }

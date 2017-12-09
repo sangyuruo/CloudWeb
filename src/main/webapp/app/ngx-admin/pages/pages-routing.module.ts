@@ -41,9 +41,14 @@ const routes: Routes = [{
   },{
       path: 'ou',
       loadChildren: () => new Promise(resolve => {
-          (require as any).ensure([], require => {resolve(require('./ou/ou.module').TablesModule); })  })
 
-  },{
+          (require as any).ensure([], require => {resolve(require('./ou/ou.module').TablesModule); })  })
+  }, /*{
+      path: 'auth',
+      loadChildren: () => new Promise(resolve => {
+          (require as any).ensure([], require => {resolve(require('./auth/auth.module').NgxAuthModule); })  })
+  },*/
+      {
       path: 'dict',
       loadChildren: () => new Promise(resolve => {
           (require as any).ensure([], require => {resolve(require('./dict/dict.module').TablesModule); })  })
@@ -74,6 +79,7 @@ const routes: Routes = [{
           loadChildren: () => new Promise(resolve => {
               (require as any).ensure([], require => {resolve(require('./nfs/nfs.module').TablesModule); })  })
       }, {
+
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',

@@ -1,5 +1,5 @@
 var dataCacheName = 'EmCloudWeb-v1';
-var cacheName = 'EmCloudWeb-1';
+var cacheName = 'EmCloudWeb-example.component.ts';
 var filesToCache = [
     '/',
     '/index.html'

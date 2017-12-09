@@ -29,7 +29,7 @@ spring:
         type: none
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:h2:mem:EmCloudWeb;DB_CLOSE_DELAY=-1
+        url: jdbc:h2:mem:EmCloudWeb;DB_CLOSE_DELAY=-example.component.ts
         name:
         username:
         password:
@@ -98,7 +98,7 @@ jhipster:
     security:
         authentication:
             jwt:
-                secret: 
+                secret:
                 # Token is valid 24 hours
                 token-validity-in-seconds: 86400
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration

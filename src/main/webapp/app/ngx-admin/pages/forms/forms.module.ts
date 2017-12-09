@@ -4,7 +4,6 @@ import { ThemeModule } from '../../@theme/theme.module';
 import { FormsRoutingModule, routedComponents } from './forms-routing.module';
 
 import {ComponentsModule} from '../components/components.module';
-import {ExampleComponent} from "./example.component";
 
 @NgModule({
   imports: [
@@ -13,9 +12,7 @@ import {ExampleComponent} from "./example.component";
       ComponentsModule
   ],
   declarations: [
-    ...routedComponents,
-      ExampleComponent
-
+    ...routedComponents
   ],
 })
 export class FormsModule { }

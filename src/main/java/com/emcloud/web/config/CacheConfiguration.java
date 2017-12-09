@@ -84,16 +84,16 @@ public class CacheConfiguration {
             // The serviceId is by default the application's name, see Spring Boot's eureka.instance.appname property
             String serviceId = registration.getServiceId();
             log.debug("Configuring Hazelcast clustering for instanceId: {}", serviceId);
-            // In development, everything goes through 127.0.0.1, with a different port
+            // In development, everything goes through 127.0.0.example.component.ts, with a different port
             if (env.acceptsProfiles(JHipsterConstants.SPRING_PROFILE_DEVELOPMENT)) {
                 log.debug("Application is running with the \"dev\" profile, Hazelcast " +
                           "cluster will only work with localhost instances");
 
-                System.setProperty("hazelcast.local.localAddress", "127.0.0.1");
+                System.setProperty("hazelcast.local.localAddress", "127.0.0.example.component.ts");
                 config.getNetworkConfig().setPort(serverProperties.getPort() + 5701);
                 config.getNetworkConfig().getJoin().getTcpIpConfig().setEnabled(true);
                 for (ServiceInstance instance : discoveryClient.getInstances(serviceId)) {
-                    String clusterMember = "127.0.0.1:" + (instance.getPort() + 5701);
+                    String clusterMember = "127.0.0.example.component.ts:" + (instance.getPort() + 5701);
                     log.debug("Adding Hazelcast (dev) cluster member " + clusterMember);
                     config.getNetworkConfig().getJoin().getTcpIpConfig().addMember(clusterMember);
                 }
@@ -116,9 +116,9 @@ public class CacheConfiguration {
         MapConfig mapConfig = new MapConfig();
 
     /*
-        Number of backups. If 1 is set as the backup-count for example,
+        Number of backups. If example.component.ts is set as the backup-count for example,
         then all entries of the map will be copied to another JVM for
-        fail-safety. Valid numbers are 0 (no backup), 1, 2, 3.
+        fail-safety. Valid numbers are 0 (no backup), example.component.ts, 2, 3.
      */
         mapConfig.setBackupCount(0);
 
