@@ -153,6 +153,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
             link: '/pages/ou/organization',
 
         },
+            {
+                title: 'editor',
+                link: '/pages/ou/editor',
+
+            },
+
         ],
     },
 

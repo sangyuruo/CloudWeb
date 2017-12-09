@@ -69,7 +69,18 @@ export class SmartTableComponent {
              },*/
             companyName: {
                 title: '公司名',
-                type: 'string',
+                type: 'html',
+                editor: {
+                    type: 'list',
+                    config: {
+                        selectText: 'Select...',
+                        list: [
+                            { value: 'Glenna Reichert', title: 'Glenna Reichert' },
+                            { value: 'Kurtis Weissnat', title: 'Kurtis Weissnat' },
+                            { value: 'Chelsey Dietrich', title: 'Chelsey Dietrich' },
+                        ],
+                    },
+                },
             },
             /*/companyName: {
                 title: 'Company Name',
@@ -150,6 +161,7 @@ export class SmartTableComponent {
             .map(res => res.json())
             .subscribe(data => (this.source.load(data)) )*/
         this.service.getCompany().subscribe(data => (this.source.load(data)))
+
     }
 
     onDeleteConfirm(event): void {
