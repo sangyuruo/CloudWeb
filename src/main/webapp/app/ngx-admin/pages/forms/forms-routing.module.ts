@@ -9,17 +9,9 @@ import { ExampleComponent } from "./example.component";
 const routes: Routes = [{
   path: '',
   component: FormsComponent,
-  children: [{
-    path: 'example',
-      component:ExampleComponent,
-      children:[{
-        path:'son',
-          component:FormInputsComponent,
-      }]
-  },
-
-  {
-
+  children: [{ path: 'input',
+      component: FormInputsComponent,
+  }, {
     path: 'layouts',
     component: FormLayoutsComponent,
   }],

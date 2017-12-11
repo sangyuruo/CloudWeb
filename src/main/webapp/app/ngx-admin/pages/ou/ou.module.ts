@@ -6,6 +6,8 @@ import { TablesRoutingModule, routedComponents } from './ou-routing.module';
 import {OuService} from "./ou.service";
 import {CustomEditorComponent} from "./editor/custom-editor.component";
 import {CustomRenderComponent} from "./editor/custom-render.component";
+import {CustomEditorComponent1} from "./company/custom-editor.component";
+import {CustomRenderComponent1} from "./company/custom-render.component";
 
 
 
@@ -22,9 +24,12 @@ import {CustomRenderComponent} from "./editor/custom-render.component";
     declarations: [
         ...routedComponents,
         CustomEditorComponent,
-        CustomRenderComponent
+        CustomRenderComponent,
+        CustomEditorComponent1,
+        CustomRenderComponent1
     ],
-    entryComponents:[ CustomRenderComponent, CustomEditorComponent],
+    entryComponents:[ CustomRenderComponent, CustomEditorComponent,CustomEditorComponent1,
+        CustomRenderComponent1],
     providers: [
         OuService,
     ],

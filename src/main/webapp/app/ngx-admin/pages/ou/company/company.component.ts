@@ -6,6 +6,7 @@ import {JhiEventManager} from "ng-jhipster";
 import 'rxjs/Rx';
 
 import {OuService} from "../ou.service";
+import {CustomEditorComponent1} from "./custom-editor.component";
 
 
 @Component({
@@ -68,20 +69,11 @@ export class SmartTableComponent {
                  type: 'number',
              },*/
             companyName: {
-                title: '公司名',
-
+                title: 'Company Name',
                 type: 'html',
                 editor: {
-                    type: 'list',
-                    config: {
-                        selectText: 'Select...',
-                        list: [
-                            { value: 'Glenna Reichert', title: 'Glenna Reichert' },
-                            { value: 'Kurtis Weissnat', title: 'Kurtis Weissnat' },
-                            { value: 'Chelsey Dietrich', title: 'Chelsey Dietrich' },
-                        ],
-
-                    },
+                    type: 'custom',
+                    component:  CustomEditorComponent1,
                 },
             },
             /*/companyName: {

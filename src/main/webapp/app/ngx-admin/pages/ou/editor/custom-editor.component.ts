@@ -1,16 +1,31 @@
 import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 
 import { Cell, DefaultEditor, Editor } from 'ng2-smart-table';
-import {Http} from "@angular/http";
+
 
 @Component({
   template: `
-      <div class="form-group">
-          <label>link</label>
-          <select class="form-control">
-              <option *ngFor="let company of companys">{{company.companyName}}</option>
-          </select>
-      </div>
+      Name: <input [ngClass]="inputClass"
+                   #name
+                   class="form-control short-input"
+                   [name]="cell.getId()"
+                   [disabled]="!cell.isEditable()"
+                   [placeholder]="cell.getTitle()"
+                   (click)="onClick.emit($event)"
+                   (keyup)="updateValue()"
+                   (keydown.enter)="onEdited.emit($event)"
+                   (keydown.esc)="onStopEditing.emit()"><br>
+      Url: <input [ngClass]="inputClass"
+                  #url
+                  class="form-control short-input"
+                  [name]="cell.getId()"
+                  [disabled]="!cell.isEditable()"
+                  [placeholder]="cell.getTitle()"
+                  (click)="onClick.emit($event)"
+                  (keyup)="updateValue()"
+                  (keydown.enter)="onEdited.emit($event)"
+                  (keydown.esc)="onStopEditing.emit()">
+      <div [hidden]="true" [innerHTML]="cell.getValue()" #htmlValue></div>
   `,
 })
 export class CustomEditorComponent extends DefaultEditor implements AfterViewInit {
@@ -18,14 +33,11 @@ export class CustomEditorComponent extends DefaultEditor implements AfterViewIni
   @ViewChild('name') name: ElementRef;
   @ViewChild('url') url: ElementRef;
   @ViewChild('htmlValue') htmlValue: ElementRef;
-  companys;
-  constructor(private http:Http) {
+    constructor() {
       super();
-      this.http.get('/emcloudou/api/companies?size=2000').map(res=>res.json()).subscribe(
-          data=>this.companys=data)
-
   }
   ngAfterViewInit() {
+      console.log('ngAfterViewInit');
     if (this.cell.newValue !== '') {
       this.name.nativeElement.value = this.getUrlName();
       this.url.nativeElement.value = this.getUrlHref();
@@ -33,6 +45,7 @@ export class CustomEditorComponent extends DefaultEditor implements AfterViewIni
   }
 
   updateValue() {
+        console.log('update view');
     const href = this.url.nativeElement.value;
     const name = this.name.nativeElement.value;
     this.cell.newValue = `<a href='${href}'>${name}</a>`;
