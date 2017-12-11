@@ -58,7 +58,7 @@ import {NgxAuthModule} from "./pages/auth/auth.module";
                           endpoint: '/auth/login',
                           method: 'post',
                           redirect: {
-                              success: '/',
+                              success: '/pages',
                               failure: null,
                           },
                           errors: ['Login/Email combination is not correct, please try again.'],
