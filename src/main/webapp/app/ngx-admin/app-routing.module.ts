@@ -5,7 +5,7 @@ import {NgxAuthModule} from "./pages/auth/auth.module";
 
 const routes: Routes = [
   {
-    path: 'pages', loadChildren: () => new Promise(resolve => {(require as any).ensure([], require => {resolve(require('./pages/pages.module').PagesModule); }) })
+    path: 'lists', loadChildren: () => new Promise(resolve => {(require as any).ensure([], require => {resolve(require('./lists/lists.module').ListsModule); }) })
   },
 
     { path: '', redirectTo:'auth/login',pathMatch: 'full' },//浏览器页面加载后跳转到登入页面
