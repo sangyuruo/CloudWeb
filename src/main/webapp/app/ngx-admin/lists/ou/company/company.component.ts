@@ -6,7 +6,9 @@ import {JhiEventManager} from "ng-jhipster";
 import 'rxjs/Rx';
 
 import {OuService} from "../ou.service";
-import {CustomEditorComponent1} from "./custom-editor.component";
+import {CompanyNameEditorComponent} from "./companyname-editor.component";
+import {CompanyCodeEditorComponent} from "./companycode-editor.component";
+import {AdressNameEditorComponent} from "./adressname-editor.component";
 
 
 @Component({
@@ -19,7 +21,67 @@ import {CustomEditorComponent1} from "./custom-editor.component";
     `],
 })
 export class SmartTableComponent {
+    data = [
+        {
+            id: 4,
+            name: 'Patricia Lebsack',
+            email: 'Julianne.OConner@kory.org',
+            passed: 'Yes',
+        },
+        {
+            id: 5,
+            name: 'Chelsey Dietrich',
+            email: 'Lucio_Hettinger@annie.ca',
+            passed: 'No',
+        },
+        {
+            id: 6,
+            name: 'Mrs. Dennis Schulist',
+            email: 'Karley_Dach@jasper.info',
+            passed: 'Yes',
+        },
+        {
+            id: 7,
+            name: 'Kurtis Weissnat',
+            email: 'Telly.Hoeger@billy.biz',
+            passed: 'No',
+        },
+        {
+            id: 8,
+            name: 'Nicholas Runolfsdottir V',
+            email: 'Sherwood@rosamond.me',
+            passed: 'Yes',
+        },
+        {
+            id: 9,
+            name: 'Glenna Reichert',
+            email: 'Chaim_McDermott@dana.io',
+            passed: 'No',
+        },
+        {
+            id: 10,
+            name: 'Clementina DuBuque',
+            email: 'Rey.Padberg@karina.biz',
+            passed: 'No',
+        },
+        {
+            id: 11,
+            name: 'Nicholas DuBuque',
+            email: 'Rey.Padberg@rosamond.biz',
+            passed: 'Yes',
+        },
+    ];
+    data1;
+    ngOnInit() {
+        this.service.getCompany().subscribe(data => (this.source.load(data)));
 
+        this.http.get('/emcloudou/api/organizations?size=2000').map(res=>res.json()).subscribe(
+            data =>{ this.data1= data;
+                console.log(this.data1)
+
+            }
+        )
+    }
     settings = {
         add: {
             addButtonContent: '<i class="nb-plus"></i>',
@@ -73,7 +135,7 @@ export class SmartTableComponent {
                 type: 'html',
                 editor: {
                     type: 'custom',
-                    component:  CustomEditorComponent1,
+                    component:  CompanyNameEditorComponent,
                 },
             },
             /*/companyName: {
@@ -86,7 +148,11 @@ export class SmartTableComponent {
             },
             companyCode: {
                 title: '公司代码',
-                type: 'string',
+                type: 'html',
+                editor: {
+                    type: 'custom',
+                    component:  CompanyCodeEditorComponent,
+                },
             },
             countryCode: {
                 title: '国家代码',
@@ -103,7 +169,11 @@ export class SmartTableComponent {
             },*/
             addressName: {
                 title: '地址',
-                type: 'number',
+                type: 'html',
+                editor: {
+                    type: 'custom',
+                    component:  AdressNameEditorComponent,
+                },
             },
             /*legalPerson: {
                 title: 'Legal Person',
@@ -127,7 +197,16 @@ export class SmartTableComponent {
              },*/
             enable: {
                 title: '是否可用',
-                type: 'number',
+                editor: {
+                    type: 'list',
+                    config: {
+                        selectText: 'Select...',
+                        list: [
+                            { value: true, title: 'true' },
+                            { value: false, title: 'false' }
+                        ],
+                    },
+                },
             },
 
             /*createTime: {
@@ -154,17 +233,11 @@ export class SmartTableComponent {
 
 
 
-
-    ngOnInit() {
-        this.service.getCompany().subscribe(data => (this.source.load(data)))
-
-    }
-
     onDeleteConfirm(event): void {
         if (window.confirm('确定删除不?')) {
             this.service.deleteCompany(event.data.id).subscribe((response) => {
                 event.confirm.resolve(response);
-                console.log(response);
+
             })
         } else {
             event.confirm.reject();
@@ -175,7 +248,7 @@ export class SmartTableComponent {
         if (window.confirm('确定新增不?')) {
             this.service.saveCompany(event.newData).subscribe((response) =>{
                 event.confirm.resolve(response);
-                console.log(response);
+
             });
         }else{
             event.confirm.reject();
