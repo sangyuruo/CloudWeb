@@ -22,6 +22,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 //添加
 import {NB_AUTH_TOKEN_WRAPPER_TOKEN, NbAuthJWTToken, NbEmailPassAuthProvider} from '@nebular/auth';
 import {NgxAuthModule} from "./pages/auth/auth.module";
+import {ApiService} from "./app.service";
 
 
 /*const formSetting: any = {
@@ -142,6 +143,7 @@ import {NgxAuthModule} from "./pages/auth/auth.module";
   ],
   bootstrap: [AppComponent],
   providers: [
+      ApiService,
     { provide: APP_BASE_HREF, useValue: '/' },
       //添加
       { provide: NB_AUTH_TOKEN_WRAPPER_TOKEN, useClass: NbAuthJWTToken },

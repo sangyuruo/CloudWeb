@@ -49,6 +49,10 @@ const routes: Routes = [{
           path: 'nfs',
           loadChildren: () => new Promise(resolve => {
               (require as any).ensure([], require => {resolve(require('./nfs/nfs.module').TablesModule); })  })
+      },{
+          path: 'charts',
+          loadChildren: () => new Promise(resolve => {
+              (require as any).ensure([], require => {resolve(require('./charts/charts.module').ChartsModule); })  })
       }, {
 
     path: '',

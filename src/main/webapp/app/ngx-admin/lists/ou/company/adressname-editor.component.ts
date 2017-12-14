@@ -7,11 +7,14 @@ import {Http} from "@angular/http";
   template: `
       <input list="pasta" [(ngModel)]="sure"
              (ngModelChange)="setInfo()" class="form-control short-input">
+      <div>
       <datalist id="pasta">
               <option  *ngFor="let company of companys" [value]="company.addressName"> </option>
       </datalist>
-      
+      </div>
   `,
+    styles:[`
+    `]
 
 })
 export class AdressNameEditorComponent extends DefaultEditor implements AfterViewInit {

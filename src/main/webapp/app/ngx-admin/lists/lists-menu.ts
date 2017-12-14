@@ -143,7 +143,24 @@ export const MENU_ITEMS: NbMenuItem[] = [
             },
         ],
     },
-
+    {
+        title: 'Charts',
+        icon: 'nb-bar-chart',
+        children: [
+            {
+                title: 'Echarts',
+                link: '/lists/charts/echarts',
+            },
+            {
+                title: 'Charts.js',
+                link: '/lists/charts/chartjs',
+            },
+            {
+                title: 'D3',
+                link: '/lists/charts/d3',
+            },
+        ],
+    },
   {
     title: 'Auth',
     icon: 'nb-locked',
