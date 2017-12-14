@@ -1,11 +1,10 @@
 import {
-    AfterContentChecked,
-    AfterContentInit, AfterViewChecked, AfterViewInit, Component, DoCheck, ElementRef, OnChanges, OnDestroy,
+     Component, DoCheck, ElementRef, OnDestroy,
     OnInit, ViewChild
 } from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
-import {Http} from "@angular/http";
-import {LocalDataSource} from "ng2-smart-table";
+
+
 import {ApiService} from "../../../app.service";
 
 
@@ -28,11 +27,7 @@ export class D3BarComponent implements OnDestroy , OnInit, DoCheck
 
  {
      @ViewChild('bars') bars: ElementRef;
-  results = [
-      /*{name: 'china', value : 3232 },
-      {name: 'germany', value : 5000 },
-      {name: 'japan', value : 6000 }*/
-  ];
+  results = [];
   test=[{name: 'china', value : 3232 },
       {name: 'germany', value : 5000 },
       {name: 'japan', value : 6000 }
@@ -49,7 +44,7 @@ export class D3BarComponent implements OnDestroy , OnInit, DoCheck
 
   constructor(private theme: NbThemeService,
               private apiService: ApiService,
-              private  http: Http
+
   ) {
       this.fetch = false;
     this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
@@ -72,26 +67,10 @@ export class D3BarComponent implements OnDestroy , OnInit, DoCheck
   }
 
     ngOnInit(){
-        // this.http.get('/emcloudou/api/organizations?size=2000').map(res=>res.json()).subscribe(
-        //     data => {
-        //         this.companys.load(data);
-        //         console.log(this.bars)
-        //
-        //         if( this.bars && this.bars.nativeElement ){
-        //             console.log(this.bars.nativeElement)
-        //             this.bars.nativeElement.attributes[0].childNodes=data
-        //             // console.log(this.bars.chartElement)
-        //         }
-        //     })
 
     }
     ngDoCheck() {
-       //  if( this.companys && this.companys.length ){
-       //      for (let i = 0; i < this.companys.length; i++ ) {
-       //          // this.results.push({name: this.test[i].name , value : 3000 })
-       //          this.results.push({name: this.companys[i].orgName, value : 3000 + 1000 * i })
-       //      }
-       // }
+
     }
 
 }

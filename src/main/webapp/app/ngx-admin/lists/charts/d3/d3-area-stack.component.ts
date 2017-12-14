@@ -1,5 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
+import {ApiService} from "../../../app.service";
 
 @Component({
   selector: 'ngx-d3-area-stack',
@@ -19,34 +20,7 @@ import { NbThemeService } from '@nebular/theme';
   `,
 })
 export class D3AreaStackComponent implements OnDestroy {
-  multi = [{
-    name: 'Germany',
-    series: [{
-        name: '2010',
-        value: 7300000,
-      }, {
-        name: '2011',
-        value: 8940000,
-      }],
-  }, {
-    name: 'USA',
-    series: [{
-        name: '2010',
-        value: 7870000,
-      }, {
-        name: '2011',
-        value: 8270000,
-      }],
-  }, {
-    name: 'France',
-    series: [{
-        name: '2010',
-        value: 5000002,
-      }, {
-        name: '2011',
-        value: 5800000,
-      }],
-  }];
+  multi = [];
   showLegend = true;
   autoScale = true;
   showXAxis = true;
@@ -57,14 +31,28 @@ export class D3AreaStackComponent implements OnDestroy {
   yAxisLabel = 'Population';
   colorScheme: any;
   themeSubscription: any;
-
-  constructor(private theme: NbThemeService) {
+  companys;
+  constructor(private theme: NbThemeService,
+              private apiService:ApiService) {
     this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
       const colors: any = config.variables;
       this.colorScheme = {
         domain: [colors.primaryLight, colors.infoLight, colors.successLight, colors.warningLight, colors.dangerLight],
       };
     });
+      this.companys = this.apiService.getCompanys()
+      if( this.companys && this.companys.length ) {
+          for (let i = 0; i < this.companys.length; i++) {
+              this.multi.push(
+                  {
+                      name: this.companys[i].orgName,
+                      series: [
+                          {name: '2010', value: this.companys[i].id},
+                          {name: '2011', value: this.companys[i].companyCode}]
+                  }
+              )
+          }
+      }
   }
 
   ngOnDestroy(): void {

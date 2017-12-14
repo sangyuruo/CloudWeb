@@ -4,7 +4,6 @@ import { Http } from '@angular/http';
 @Injectable()
 export class ApiService {
 
-    private resourceUrl = '/emcloudou/api/companies?size=2000';
     private companys: any;
     constructor(private http: Http) { }
 
