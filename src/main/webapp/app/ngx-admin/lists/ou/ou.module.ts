@@ -6,7 +6,6 @@ import { TablesRoutingModule, routedComponents } from './ou-routing.module';
 import {OuService} from "./ou.service";
 import {CustomEditorComponent} from "./editor/custom-editor.component";
 import {CustomRenderComponent} from "./editor/custom-render.component";
-import {CompanyNameEditorComponent} from "./company/companyname-editor.component";
 import {CompanyCodeEditorComponent} from "./company/companycode-editor.component";
 import {AdressNameEditorComponent} from "./company/adressname-editor.component";
 
@@ -27,11 +26,10 @@ import {AdressNameEditorComponent} from "./company/adressname-editor.component";
         ...routedComponents,
         CustomEditorComponent,
         CustomRenderComponent,
-        CompanyNameEditorComponent,
         CompanyCodeEditorComponent,
         AdressNameEditorComponent
     ],
-    entryComponents:[ CustomRenderComponent, CustomEditorComponent, CompanyNameEditorComponent,
+    entryComponents:[ CustomRenderComponent, CustomEditorComponent,
         CompanyCodeEditorComponent,  AdressNameEditorComponent],
     providers: [
         OuService,

@@ -84,5 +84,6 @@ export const DEFAULT_THEME = {
       axisLineColor: '#cccccc',
       textColor: '#484848',
     },
+
   },
 };

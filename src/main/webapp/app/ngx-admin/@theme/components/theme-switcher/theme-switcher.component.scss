@@ -15,7 +15,6 @@
     align-items: center;
     cursor: pointer;
     margin: 0;
-
     & > span {
       font-size: 1.125rem;
       font-weight: nb-theme(font-weight-bold);
@@ -56,7 +55,6 @@
 
     input {
       display: none;
-
       &:checked + .slider::before {
         transform: translateX(2.25rem);
       }

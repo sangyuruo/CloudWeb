@@ -6,9 +6,8 @@ import {JhiEventManager} from "ng-jhipster";
 import 'rxjs/Rx';
 
 import {OuService} from "../ou.service";
-import {CompanyNameEditorComponent} from "./companyname-editor.component";
-import {CompanyCodeEditorComponent} from "./companycode-editor.component";
 import {AdressNameEditorComponent} from "./adressname-editor.component";
+import {ApiService} from "../../../app.service";
 
 
 @Component({
@@ -71,16 +70,12 @@ export class SmartTableComponent {
             passed: 'Yes',
         },
     ];
-    data1;
+
     ngOnInit() {
         this.service.getCompany().subscribe(data => (this.source.load(data)));
 
-        this.http.get('/emcloudou/api/organizations?size=2000').map(res=>res.json()).subscribe(
-            data =>{ this.data1= data;
-                console.log(this.data1)
 
-            }
-        )
+
     }
     settings = {
         add: {
@@ -134,8 +129,11 @@ export class SmartTableComponent {
                 title: 'Company Name',
                 type: 'html',
                 editor: {
-                    type: 'custom',
-                    component:  CompanyNameEditorComponent,
+                    type: 'list',
+                    config: {
+                        selectText: 'Select...',
+                        list: [],
+                    },
                 },
             },
             /*/companyName: {
@@ -148,11 +146,8 @@ export class SmartTableComponent {
             },
             companyCode: {
                 title: '公司代码',
-                type: 'html',
-                editor: {
-                    type: 'custom',
-                    component:  CompanyCodeEditorComponent,
-                },
+                type: 'string',
+
             },
             countryCode: {
                 title: '国家代码',
@@ -174,6 +169,7 @@ export class SmartTableComponent {
                     type: 'custom',
                     component:  AdressNameEditorComponent,
                 },
+
             },
             /*legalPerson: {
                 title: 'Legal Person',
@@ -224,11 +220,22 @@ export class SmartTableComponent {
 
     source: LocalDataSource = new LocalDataSource();
 
-    isSaving:boolean;
+
+   companys:any;
     constructor(private service: OuService,
                 private http:Http,
-                private eventManager:JhiEventManager
+                private eventManager:JhiEventManager,
+                private apiService:ApiService
     ) {
+        this.companys = this.apiService.getCompanys()
+        console.log(this.companys[0].orgName)
+        console.log(this.settings.columns.companyName.editor.config.list)
+        if( this.companys && this.companys.length ){
+            for(let i=0;i<this.companys.length;i++){
+                this.settings.columns.companyName.editor.config.list.push({value:this.companys[i].orgName,title:this.companys[i].orgName})
+
+            }
+        }
     }
 
 
