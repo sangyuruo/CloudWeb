@@ -14,11 +14,11 @@ import {ApiService} from './app.service';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private analytics: AnalyticsService,private apiService: ApiService) {
+  constructor(private analytics: AnalyticsService) {
   }
 
   ngOnInit(): void {
     this.analytics.trackPageViews();
-    this.apiService.initDatas()
+
   }
 }

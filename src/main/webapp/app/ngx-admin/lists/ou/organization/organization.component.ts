@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { LocalDataSource } from 'ng2-smart-table';
+
 import {Http} from "@angular/http";
 import {JhiEventManager} from "ng-jhipster";
 import {OuService} from "../ou.service";
+import {ServerDataSource} from "../../../ng2-smart-table/lib/data-source/server/server.data-source";
+
 
 @Component({
     selector: 'ngx-smart-table',
@@ -71,7 +73,14 @@ export class Organizationtable {
             },
             companyName: {
                 title: 'companyName',
-                type: 'number',
+                type: 'html',
+                editor: {
+                    type: 'list',
+                    config: {
+                        selectText: 'Select...',
+                        list: [],
+                    },
+                },
             },
             parentOrgName: {
                 title: 'parentOrgName',
@@ -88,15 +97,20 @@ export class Organizationtable {
         },
     };
 
-    source: LocalDataSource = new LocalDataSource();
-
+    source:ServerDataSource;
+     origanztiongs:any
     constructor(private service: OuService,
-                private  http  : Http,
-                private  eventManager: JhiEventManager
+                private http:Http
     ) {
-        /* const data = this.service.getData();
-         this.source.load(data);*/
-        this.service.getOrganization().subscribe(data => (this.source.load(data)))
+        this.source = new ServerDataSource(http, { endPoint: '/emcloudou/api/organizations' });
+        this.origanztiongs = this.service.getOriganizations()
+        if( this.origanztiongs && this.origanztiongs.length ){
+            for(let i=0;i<this.origanztiongs.length;i++){
+                this.settings.columns.companyName.editor.config.list.push(
+                    {value:this.origanztiongs[i].companyCode,title:this.origanztiongs[i].companyCode})
+
+            }
+        }
     }
 
     onDeleteConfirm(event): void {
@@ -104,7 +118,6 @@ export class Organizationtable {
         if (window.confirm('你敢删老子吗?')) {
             this.service.deleteOrganization(event.data.id).subscribe((response) => {
                 event.confirm.resolve(response);
-                console.log(response);
             });
         } else {
             event.confirm.reject();

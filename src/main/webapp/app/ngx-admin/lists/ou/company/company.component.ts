@@ -1,13 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {LocalDataSource} from 'ng2-smart-table';
-import {Http, Headers} from "@angular/http";
-import {JhiEventManager} from "ng-jhipster";
+import {Component,OnInit} from '@angular/core';
+
 
 import 'rxjs/Rx';
 
 import {OuService} from "../ou.service";
 import {AdressNameEditorComponent} from "./adressname-editor.component";
-import {ApiService} from "../../../app.service";
+import {Router} from "@angular/router";
+import {Http} from "@angular/http";
+import {ServerDataSource} from "../../../ng2-smart-table/lib/data-source/server/server.data-source";
 
 
 @Component({
@@ -17,9 +17,19 @@ import {ApiService} from "../../../app.service";
         nb-card {
             transform: translate3d(0, 0, 0);
         }
+        div{
+            text-align:center;
+        }
+       ul{
+           justify-content:center;
+       }
+        li{
+            width:40px;
+            font-size:30px;
+        }
     `],
 })
-export class SmartTableComponent {
+export class SmartTableComponent implements OnInit {
     data = [
         {
             id: 4,
@@ -71,12 +81,7 @@ export class SmartTableComponent {
         },
     ];
 
-    ngOnInit() {
-        this.service.getCompany().subscribe(data => (this.source.load(data)));
 
-
-
-    }
     settings = {
         add: {
             addButtonContent: '<i class="nb-plus"></i>',
@@ -213,30 +218,38 @@ export class SmartTableComponent {
                 title: 'Updated By',
                 type: 'number',
             },*/
+        },
 
+        pager: {
+            perPage: 20,
 
         },
     };
 
-    source: LocalDataSource = new LocalDataSource();
-
-
-   companys:any;
+    source: ServerDataSource;
+    companys:any;
     constructor(private service: OuService,
-                private http:Http,
-                private eventManager:JhiEventManager,
-                private apiService:ApiService
+                private http:Http
     ) {
-        this.companys = this.apiService.getCompanys()
-        console.log(this.companys[0].orgName)
-        console.log(this.settings.columns.companyName.editor.config.list)
+        this.source = new ServerDataSource(http, { endPoint: '/emcloudou/api/companies' });
+    }
+
+
+
+
+    ngOnInit() {
+
+        this.companys = this.service.getCompanys()
+
         if( this.companys && this.companys.length ){
             for(let i=0;i<this.companys.length;i++){
-                this.settings.columns.companyName.editor.config.list.push({value:this.companys[i].orgName,title:this.companys[i].orgName})
-
+                this.settings.columns.companyName.editor.config.list.push(
+                    {value:this.companys[i].orgName,title:this.companys[i].orgName})
             }
         }
+
     }
+
 
 
 
@@ -262,6 +275,7 @@ export class SmartTableComponent {
         }
     }
     onSaveConfirm(event) {
+        this.service.getCompany().subscribe(data => (this.source.load(data)));
         if (window.confirm('确定修改不?')) {
             this.service.updateCompany(event.newData).subscribe((response) =>{
                 event.confirm.resolve(response);

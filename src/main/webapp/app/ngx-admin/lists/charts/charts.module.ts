@@ -51,6 +51,5 @@ const components = [
 @NgModule({
   imports: [ThemeModule, ChartsRoutingModule, AngularEchartsModule, NgxChartsModule, ChartModule],
   declarations: [...routedComponents, ...components],
-
 })
 export class ChartsModule {}

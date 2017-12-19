@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, OnDestroy } from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
-import {ApiService} from "../../../app.service";
 
 @Component({
   selector: 'ngx-echarts-pie',
@@ -11,81 +10,69 @@ import {ApiService} from "../../../app.service";
 export class EchartsPieComponent implements AfterViewInit, OnDestroy {
   options: any = {};
   themeSubscription: any;
-   companys:any
-  constructor(private theme: NbThemeService,
-              private apiService: ApiService) {
 
-
+  constructor(private theme: NbThemeService) {
   }
 
   ngAfterViewInit() {
-      this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
+    this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
 
-          const colors = config.variables;
-          const echarts: any = config.variables.echarts;
+      const colors = config.variables;
+      const echarts: any = config.variables.echarts;
 
-          this.options = {
-              backgroundColor: echarts.bg,
-              color: [colors.warningLight, colors.infoLight, colors.dangerLight, colors.successLight, colors.primaryLight],
-              tooltip: {
-                  trigger: 'item',
-                  formatter: '{a} <br/>{b} : {c} ({d}%)',
+      this.options = {
+        backgroundColor: echarts.bg,
+        color: [colors.warningLight, colors.infoLight, colors.dangerLight, colors.successLight, colors.primaryLight],
+        tooltip: {
+          trigger: 'item',
+          formatter: '{a} <br/>{b} : {c} ({d}%)',
+        },
+        legend: {
+          orient: 'vertical',
+          left: 'left',
+          data: ['USA', 'Germany', 'France', 'Canada', 'Russia'],
+          textStyle: {
+            color: echarts.textColor,
+          },
+        },
+        series: [
+          {
+            name: 'Countries',
+            type: 'pie',
+            radius: '80%',
+            center: ['50%', '50%'],
+            data: [
+              { value: 335, name: 'Germany' },
+              { value: 310, name: 'France' },
+              { value: 234, name: 'Canada' },
+              { value: 135, name: 'Russia' },
+              { value: 1548, name: 'USA' },
+            ],
+            itemStyle: {
+              emphasis: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: echarts.itemHoverShadowColor,
               },
-              legend: {
-                  orient: 'vertical',
-                  left: 'left',
-                  data: ['USA', 'Germany', 'France', 'Canada', 'Russia'],
-                  textStyle: {
-                      color: echarts.textColor,
-                  },
+            },
+            label: {
+              normal: {
+                textStyle: {
+                  color: echarts.textColor,
+                },
               },
-              series: [
-                  {
-                      name: 'Countries',
-                      type: 'pie',
-                      radius: '80%',
-                      center: ['50%', '50%'],
-                      data: [
-
-                      ],
-                      itemStyle: {
-                          emphasis: {
-                              shadowBlur: 10,
-                              shadowOffsetX: 0,
-                              shadowColor: echarts.itemHoverShadowColor,
-                          },
-                      },
-                      label: {
-                          normal: {
-                              textStyle: {
-                                  color: echarts.textColor,
-                              },
-                          },
-                      },
-                      labelLine: {
-                          normal: {
-                              lineStyle: {
-                                  color: echarts.axisLineColor,
-                              },
-                          },
-                      },
-                  },
-              ],
-          };
-
-          this.companys = this.apiService.getCompanys()
-          if( this.companys && this.companys.length ){
-              for(let i=0;i<this.companys.length;i++){
-                  this.options.legend.data.push(this.companys[i].orgName);
-                  this.options.series[0].data.push({value:this.companys[i].id,name:this.companys[i].orgName})
-              }
-          }
-
-
-
-
-      });
-
+            },
+            labelLine: {
+              normal: {
+                lineStyle: {
+                  color: echarts.axisLineColor,
+                },
+              },
+            },
+          },
+        ],
+      };
+    });
   }
 
   ngOnDestroy(): void {

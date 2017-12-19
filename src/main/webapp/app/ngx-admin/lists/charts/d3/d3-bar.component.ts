@@ -1,18 +1,10 @@
-import {
-     Component, DoCheck, ElementRef, OnDestroy,
-    OnInit, ViewChild
-} from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
-
-
-import {ApiService} from "../../../app.service";
-
 
 @Component({
   selector: 'ngx-d3-bar',
   template: `
     <ngx-charts-bar-vertical
-        #bars
       [scheme]="colorScheme"
       [results]="results"
       [xAxis]="showXAxis"
@@ -23,16 +15,13 @@ import {ApiService} from "../../../app.service";
     </ngx-charts-bar-vertical>
   `,
 })
-export class D3BarComponent implements OnDestroy , OnInit, DoCheck
+export class D3BarComponent implements OnDestroy {
 
- {
-     @ViewChild('bars') bars: ElementRef;
-  results = [];
-  test=[{name: 'china', value : 3232 },
-      {name: 'germany', value : 5000 },
-      {name: 'japan', value : 6000 }
-  ]
-    fetch = false;
+  results = [
+    { name: 'Germany', value: 8940 },
+    { name: 'USA', value: 5000 },
+    { name: 'France', value: 7200 },
+  ];
   showLegend = true;
   showXAxis = true;
   showYAxis = true;
@@ -40,37 +29,17 @@ export class D3BarComponent implements OnDestroy , OnInit, DoCheck
   yAxisLabel = 'Population';
   colorScheme: any;
   themeSubscription: any;
-  companys: any;
 
-  constructor(private theme: NbThemeService,
-              private apiService: ApiService,
-
-  ) {
-      this.fetch = false;
+  constructor(private theme: NbThemeService) {
     this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
       const colors: any = config.variables;
       this.colorScheme = {
         domain: [colors.primaryLight, colors.infoLight, colors.successLight, colors.warningLight, colors.dangerLight],
       };
     });
-      this.companys = this.apiService.getCompanys()
-      if( this.companys && this.companys.length ){
-          for(let i=0;i<this.companys.length;i++){
-              this.results.push({name:this.companys[i].orgName, value :this.companys[i].id })
-          }
-      }
   }
 
   ngOnDestroy(): void {
     this.themeSubscription.unsubscribe();
-
   }
-
-    ngOnInit(){
-
-    }
-    ngDoCheck() {
-
-    }
-
 }

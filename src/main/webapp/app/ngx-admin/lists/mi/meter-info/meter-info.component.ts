@@ -83,6 +83,7 @@ export class SmartTableComponent2 {
                 type: 'String',
             },
         },
+        noDataMessage: '未找到任何数据',
     };
 
     source: LocalDataSource = new LocalDataSource();

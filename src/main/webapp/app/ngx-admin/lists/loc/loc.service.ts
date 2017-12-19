@@ -31,7 +31,7 @@ export class LocService {
     }
     getDataArea()
     {
-        return this.http.get('/emcloudloc/api/areas?size=2000')
+        return this.http.get('/emcloudloc/api/areas?size=3000')
             .map(res => res.json())
     }
     deleteAddress(id :number):Observable<Response>

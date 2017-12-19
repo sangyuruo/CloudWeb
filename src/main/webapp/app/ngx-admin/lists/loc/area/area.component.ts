@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 
 import { LocService } from '../loc.service';
+import {ServerDataSource} from "../../../ng2-smart-table/lib/data-source/server/server.data-source";
+import {Http} from "@angular/http";
 
 @Component({
   selector: 'ngx-smart-table',
@@ -61,10 +63,11 @@ export class AreaComponent {
     },
   };
 
-  source: LocalDataSource = new LocalDataSource();
+  source: ServerDataSource;
 
-  constructor(private service: LocService) {
-    this.service.getDataArea().subscribe(data =>(this.source.load(data)))
+  constructor(private service: LocService,
+              private http:Http) {
+      this.source = new ServerDataSource(http, { endPoint: '/emcloudloc/api/areas'});
   }
 
   onDeleteConfirm(event): void {

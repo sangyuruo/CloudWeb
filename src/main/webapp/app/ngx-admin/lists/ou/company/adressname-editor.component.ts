@@ -1,8 +1,6 @@
 import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-
 import { Cell, DefaultEditor, Editor } from 'ng2-smart-table';
 import {Http} from "@angular/http";
-
 @Component({
   template: `
       <input list="pasta" [(ngModel)]="sure"
@@ -15,17 +13,14 @@ import {Http} from "@angular/http";
   `,
     styles:[`
     `]
-
 })
 export class AdressNameEditorComponent extends DefaultEditor implements AfterViewInit {
 
     @ViewChild('name') name: ElementRef;
     @ViewChild('url') url: ElementRef;
     @ViewChild('htmlValue') htmlValue: ElementRef;
-
     companys;
     sure ;
-
     constructor(private http: Http) {
         super();
         this.http.get('/emcloudou/api/organizations?size=2000').map( res => res.json()).subscribe(
@@ -33,14 +28,9 @@ export class AdressNameEditorComponent extends DefaultEditor implements AfterVie
                 this.sure=this.cell.newValue
             }
     )
-
     }
     ngAfterViewInit() {}
-
     setInfo(){
         this.cell.newValue = this.sure
     }
-
-
-
 }

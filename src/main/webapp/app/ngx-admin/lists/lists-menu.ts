@@ -20,12 +20,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
             link: '/lists/ou/organization',
 
         },
-            {
-                title: 'editor',
-                link: '/lists/ou/editor',
-
-            },
-
         ],
     },
 
