@@ -5,9 +5,10 @@ import 'rxjs/Rx';
 
 import {OuService} from "../ou.service";
 import {AdressNameEditorComponent} from "./adressname-editor.component";
-import {Router} from "@angular/router";
+
 import {Http} from "@angular/http";
 import {ServerDataSource} from "../../../ng2-smart-table/lib/data-source/server/server.data-source";
+import {CompanynameEditorComponent} from "./companyname-editor.component";
 
 
 @Component({
@@ -134,13 +135,11 @@ export class SmartTableComponent implements OnInit {
                 title: 'Company Name',
                 type: 'html',
                 editor: {
-                    type: 'list',
-                    config: {
-                        selectText: 'Select...',
-                        list: [],
-                    },
+                    type: 'custom',
+                    component: CompanynameEditorComponent,
                 },
             },
+
             /*/companyName: {
                 title: 'Company Name',
                 type: 'string',
@@ -221,7 +220,7 @@ export class SmartTableComponent implements OnInit {
         },
 
         pager: {
-            perPage: 20,
+            perPage: 10,
 
         },
     };
@@ -239,14 +238,6 @@ export class SmartTableComponent implements OnInit {
 
     ngOnInit() {
 
-        this.companys = this.service.getCompanys()
-
-        if( this.companys && this.companys.length ){
-            for(let i=0;i<this.companys.length;i++){
-                this.settings.columns.companyName.editor.config.list.push(
-                    {value:this.companys[i].orgName,title:this.companys[i].orgName})
-            }
-        }
 
     }
 
@@ -275,9 +266,11 @@ export class SmartTableComponent implements OnInit {
         }
     }
     onSaveConfirm(event) {
-        this.service.getCompany().subscribe(data => (this.source.load(data)));
+
         if (window.confirm('确定修改不?')) {
+
             this.service.updateCompany(event.newData).subscribe((response) =>{
+                this.service.getCompany().subscribe(data => (this.source.load(data)));
                 event.confirm.resolve(response);
                 console.log(response);
             });

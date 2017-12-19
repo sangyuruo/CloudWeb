@@ -6,7 +6,5 @@ import {OuService} from "./ou.service";
   template: `<router-outlet></router-outlet>`,
 })
 export class TablesComponent {
-    constructor(private ouService:OuService){
-        this.ouService.initDatas()
-    }
+
 }
