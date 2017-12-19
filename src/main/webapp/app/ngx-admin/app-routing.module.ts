@@ -1,6 +1,7 @@
 import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
-import {NgxAuthModule} from  "./lists/auth/auth.module";
+import {NbAuthModule} from "./@nebular/auth/auth.module";
+
 
 
 const routes: Routes = [
@@ -12,7 +13,7 @@ const routes: Routes = [
     },
 
     { path: '', redirectTo: 'auth/login', pathMatch : 'full' }, //浏览器页面加载后跳转到登入页面
-  { path: '**', redirectTo: 'auth/login'},
+    { path: '**', redirectTo: 'auth/login'},
 ];
 
 const config: ExtraOptions = {
@@ -21,11 +22,7 @@ const config: ExtraOptions = {
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, config)],
-  exports: [RouterModule,
-
-      //添加auth
-      NgxAuthModule,
-  ],
+  exports: [RouterModule,NbAuthModule],
 })
 export class AppRoutingModule {
 }

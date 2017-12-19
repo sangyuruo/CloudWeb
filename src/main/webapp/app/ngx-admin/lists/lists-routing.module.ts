@@ -16,10 +16,6 @@ const routes: Routes = [{
 
           (require as any).ensure([], require => {resolve(require('./ou/ou.module').TablesModule); })  })
   }, {
-      path: 'auth',
-      loadChildren: () => new Promise(resolve => {
-          (require as any).ensure([], require => {resolve(require('./auth/auth.module').NgxAuthModule); })  })
-  }, {
       path: 'dict',
       loadChildren: () => new Promise(resolve => {
           (require as any).ensure([], require => {resolve(require('./dict/dict.module').TablesModule); })  })
