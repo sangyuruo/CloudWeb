@@ -4,9 +4,9 @@ import {NgxAuthModule} from  "./lists/auth/auth.module";
 
 
 const routes: Routes = [
-  {
-    path: 'lists', loadChildren: () => new Promise(resolve => {(require as any).ensure([], require => {resolve(require('./lists/lists.module').ListsModule); }) })
-  },
+    {
+        path: 'lists', loadChildren: () => new Promise(resolve => {(require as any).ensure([], require => {resolve(require('./lists/lists.module').ListsModule); }) })
+    },
     {
         path: 'pages', loadChildren: () => new Promise(resolve => {(require as any).ensure([], require => {resolve(require('./pages/pages.module').PagesModule); }) })
     },

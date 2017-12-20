@@ -1,24 +1,20 @@
 import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-
 import { Cell, DefaultEditor, Editor } from 'ng2-smart-table';
 import {Http} from "@angular/http";
-
 @Component({
     template: `
       <select class="form-control" [(ngModel)]="sure" (ngModelChange)="setInfo()" #name [name]="cell.getId()" >
        
-          <option  *ngFor="let company of companys" [value]="company.id"  >{{company.id}} </option>
+          <option  *ngFor="let company of companys" [value]="company.id"  >{{company.orgName}} </option>
       </select>
     
 
   `,
 })
 export class CompanynameEditorComponent extends DefaultEditor implements AfterViewInit {
-
     @ViewChild('name') name: ElementRef;
     @ViewChild('url') url: ElementRef;
     @ViewChild('htmlValue') htmlValue: ElementRef;
-
     companys;
     sure ;
     constructor(private http: Http) {

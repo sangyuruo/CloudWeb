@@ -226,7 +226,7 @@ export class SmartTableComponent implements OnInit {
     };
 
     source: ServerDataSource;
-    companys:any;
+
     constructor(private service: OuService,
                 private http:Http
     ) {
