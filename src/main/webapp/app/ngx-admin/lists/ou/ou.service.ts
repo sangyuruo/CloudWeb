@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 
 import {Observable} from "rxjs/Observable";
 import {Http,Response} from "@angular/http";
+import {JhiDateUtils} from "ng-jhipster";
+import {Company} from "../../../entities/company/company.model";
+import {DatePipe} from "@angular/common";
 
 
 @Injectable()
@@ -9,7 +12,8 @@ export class OuService {
 
 
 
-    constructor(private http: Http) {
+    constructor(private http: Http,
+                private dateUtils: JhiDateUtils ) {
     }
     getCompany() {
         return this.http.get('/emcloudou/api/companies')
@@ -31,9 +35,9 @@ export class OuService {
             `${'/emcloudou/api/organizations'}/${id}`);
     }
 
-    saveCompany(data) {
-        return this.http.post('/emcloudou/api/companies', data)
-            .map(res => res.json());
+    saveCompany(data){
+       return this.http.post('/emcloudou/api/companies', data)
+            .map(res=>res.json())
     }
 
     saveOrganization(data) {

@@ -18,6 +18,9 @@ import { NB_AUTH_TOKEN_WRAPPER_TOKEN, NbAuthJWTToken } from './@nebular/auth';
 import {NbAuthModule} from "./@nebular/auth/auth.module";
 import {NbEmailPassAuthProvider} from "./@nebular/auth/providers/email-pass-auth.provider";
 import {ApiService} from "./app.service";
+import {EmCloudWebSharedModule} from "../shared/shared.module";
+
+
 
 
 @NgModule({
@@ -32,6 +35,8 @@ import {ApiService} from "./app.service";
         ThemeModule.forRoot(),
         CoreModule.forRoot(),
 
+        //添加 2017.12.25
+        //EmCloudWebSharedModule,
         //添加
         NbAuthModule.forRoot({
             providers: {

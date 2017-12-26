@@ -6,17 +6,8 @@ export class ApiService {
 
     private organizationes: any;
     private companies: any;
+    private source: any;
     constructor(private http: Http) { }
-
-    initOrganizationesDatas(){
-        this.http.get('/emcloudou/api/organizations?size=2000').map(res=>res.json()).subscribe(
-            data => {
-                this.organizationes = data;
-            })
-    }
-    getOrganizationes(): any {
-        return this.organizationes;
-    }
 
 
 
@@ -30,5 +21,13 @@ export class ApiService {
         return this.companies;
     }
 
-
+    initOrganizationesDatas(){
+        this.http.get('/emcloudou/api/organizations?size=210').map(res=>res.json()).subscribe(
+            data => {
+                this.organizationes = data;
+            })
+    }
+    getOrganizationes(): any {
+        return this.organizationes;
+    }
 }

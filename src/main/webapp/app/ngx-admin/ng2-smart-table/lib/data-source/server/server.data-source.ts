@@ -2,20 +2,25 @@ import { Http } from '@angular/http';
 import { RequestOptionsArgs } from '@angular/http/src/interfaces';
 import { URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs';
-
 import { LocalDataSource } from '../local/local.data-source';
 import { ServerSourceConf } from './server-source.conf';
 import { getDeepFromObject } from '../../helpers';
-
 import 'rxjs/add/operator/toPromise';
+import {JhiDateUtils} from "ng-jhipster";
+import {Company} from "../../../../../entities/company/company.model";
+
+
+
 
 export class ServerDataSource extends LocalDataSource {
 
   protected conf: ServerSourceConf;
 
-  protected lastRequestCount: number = 0;
+    protected lastRequestCount: number = 0;
 
-  constructor(protected http: Http, conf: ServerSourceConf | {} = {}) {
+  constructor(protected http: Http, conf: ServerSourceConf | {} = {},
+              //新增一个参数
+              protected dateUtils: JhiDateUtils ) {
     super();
 
     this.conf = new ServerSourceConf(conf);
@@ -29,15 +34,26 @@ export class ServerDataSource extends LocalDataSource {
     return this.lastRequestCount;
   }
 
-  getElements(): Promise<any> {
+  getElements(){
     return this.requestElements().map(res => {
       this.lastRequestCount = this.extractTotalFromResponse(res);
       this.data = this.extractDataFromResponse(res);
-
-      return this.data;
+      //新增
+     const result=[];
+        for (let i = 0; i < this.data.length; i++) {
+            result.push(this.convertItemFromServer(this.data[i]));
+        }
+        return result;
+     // 源码 return this.data;
     }).toPromise();
   }
-
+  //新增
+     convertItemFromServer(json: any){
+        const entity  = Object.assign(json);
+        entity.createTime = this.dateUtils.convertDateTimeFromServer(json.createTime);
+        entity.updateTime = this.dateUtils.convertDateTimeFromServer(json.updateTime);
+        return entity;
+    }
   /**
    * Extracts array of data from server response
    * @param res
@@ -71,7 +87,9 @@ export class ServerDataSource extends LocalDataSource {
   }
 
   protected requestElements(): Observable<any> {
-    return this.http.get(this.conf.endPoint, this.createRequestOptions());
+      const requestOpetions = this.createRequestOptions()
+      console.log( requestOpetions.params)
+      return this.http.get(this.conf.endPoint, requestOpetions );
   }
 
   protected createRequestOptions(): RequestOptionsArgs {
@@ -116,7 +134,6 @@ export class ServerDataSource extends LocalDataSource {
     if (this.pagingConf && this.pagingConf['page'] && this.pagingConf['perPage']) {
         let pageParams : string = (this.pagingConf['page']-1).toString();// 定义变量转化为字符串
       searchParams.set(this.conf.pagerPageKey, pageParams);
-      console.log(this.conf.pagerPageKey)
       searchParams.set(this.conf.pagerLimitKey, this.pagingConf['perPage']);
     }
 

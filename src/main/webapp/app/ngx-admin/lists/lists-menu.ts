@@ -177,4 +177,53 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
     ],
   },
+    {
+        title: 'UI Features',
+        icon: 'nb-keypad',
+        link: '/lists/ui-features',
+        children: [
+            {
+                title: 'Buttons',
+                link: '/lists/ui-features/buttons',
+            },
+            {
+                title: 'Grid',
+                link: '/lists/ui-features/grid',
+            },
+            {
+                title: 'Icons',
+                link: '/lists/ui-features/icons',
+            },
+            {
+                title: 'Modals',
+                link: '/lists/ui-features/modals',
+            },
+            {
+                title: 'Typography',
+                link: '/lists/ui-features/typography',
+            },
+            {
+                title: 'Animated Searches',
+                link: '/lists/ui-features/search-fields',
+            },
+            {
+                title: 'Tabs',
+                link: '/lists/ui-features/tabs',
+            },
+        ],
+    },
+    {
+        title: 'Forms',
+        icon: 'nb-compose',
+        children: [
+            {
+                title: 'Form input',
+                link: '/lists/forms/input',
+            },
+            {
+                title: 'Form Layouts',
+                link: '/lists/forms/layouts',
+            },
+        ],
+    },
 ];

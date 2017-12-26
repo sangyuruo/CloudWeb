@@ -5,7 +5,7 @@ import {Http} from "@angular/http";
     template: `
       <select class="form-control" [(ngModel)]="sure" (ngModelChange)="setInfo()" #name [name]="cell.getId()" >
        
-          <option  *ngFor="let company of companys" [value]="company.id"  >{{company.orgName}} </option>
+          <option  *ngFor="let company of companys" [value]="company.orgName"  >{{company.orgName}} </option>
       </select>
     
 
@@ -13,8 +13,7 @@ import {Http} from "@angular/http";
 })
 export class CompanynameEditorComponent extends DefaultEditor implements AfterViewInit {
     @ViewChild('name') name: ElementRef;
-    @ViewChild('url') url: ElementRef;
-    @ViewChild('htmlValue') htmlValue: ElementRef;
+
     companys;
     sure ;
     constructor(private http: Http) {

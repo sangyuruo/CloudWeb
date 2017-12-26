@@ -7,6 +7,11 @@ import {OuService} from "./ou.service";
 import {AdressNameEditorComponent} from "./company/adressname-editor.component";
 import {Ng2SmartTableModule} from "../../ng2-smart-table/ng2-smart-table.module";
 import {CompanynameEditorComponent} from "./company/companyname-editor.component";
+import {UiFeaturesModule} from "../../pages/ui-features/ui-features.module";
+
+
+
+
 
 
 
@@ -20,13 +25,18 @@ import {CompanynameEditorComponent} from "./company/companyname-editor.component
         ThemeModule,
         TablesRoutingModule,
         Ng2SmartTableModule,
+        UiFeaturesModule,
+
 
 
     ],
     declarations: [
         ...routedComponents,
         AdressNameEditorComponent,
-        CompanynameEditorComponent
+        CompanynameEditorComponent,
+
+
+
 
     ],
     entryComponents:[AdressNameEditorComponent,CompanynameEditorComponent],

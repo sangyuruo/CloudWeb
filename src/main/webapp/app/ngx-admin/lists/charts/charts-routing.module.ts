@@ -25,7 +25,10 @@ const routes: Routes = [{
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class ChartsRoutingModule { }
+export class ChartsRoutingModule {
+
+
+}
 
 export const routedComponents = [
   ChartsComponent,

@@ -4,7 +4,7 @@ export class ServerSourceConf {
   protected static readonly SORT_DIR_KEY = '_order';
   protected static readonly PAGER_PAGE_KEY = 'page';
   protected static readonly PAGER_LIMIT_KEY = 'size';
-  protected static readonly FILTER_FIELD_KEY = '#field#_like';
+  protected static readonly FILTER_FIELD_KEY = '#field#';
   protected static readonly TOTAL_KEY = 'x-total-count';
   protected static readonly DATA_KEY = '';
 

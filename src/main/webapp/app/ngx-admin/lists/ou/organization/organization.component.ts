@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import {Http} from "@angular/http";
-import {JhiEventManager} from "ng-jhipster";
+import {JhiDateUtils} from "ng-jhipster";
 import {OuService} from "../ou.service";
 import {ServerDataSource} from "../../../ng2-smart-table/lib/data-source/server/server.data-source";
 
@@ -93,6 +93,18 @@ export class Organizationtable {
             enable: {
                 title:'enable',
                 type: 'Boolean',
+            },
+            createTime: {
+                title: 'create Time',
+                type: 'number',
+            },
+            /*updatedBy: {
+                title: 'Updated By',
+                type: 'number',
+            },*/
+            updateTime: {
+                title :'Update Time',
+                type:'number',
             }
         },
     };
@@ -100,9 +112,10 @@ export class Organizationtable {
     source:ServerDataSource;
      origanztiongs:any
     constructor(private service: OuService,
-                private http:Http
+                private http:Http,
+                private dateUtils:JhiDateUtils
     ) {
-        this.source = new ServerDataSource(http, { endPoint: '/emcloudou/api/organizations' });
+        this.source = new ServerDataSource(http, { endPoint: '/emcloudou/api/organizations' },dateUtils);
         this.origanztiongs = this.service.getOriganizations()
         if( this.origanztiongs && this.origanztiongs.length ){
             for(let i=0;i<this.origanztiongs.length;i++){
@@ -140,6 +153,7 @@ export class Organizationtable {
             this.service.updateOrganization(event.newData).subscribe((response) => {
                 event.confirm.resolve(response);
                 console.log(response);
+                this.service.getOrganization().subscribe(data => (this.source.load(data)));
             });
         } else {
             event.confirm.reject();

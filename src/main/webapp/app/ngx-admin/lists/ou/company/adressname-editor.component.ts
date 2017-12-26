@@ -16,9 +16,7 @@ import {Http} from "@angular/http";
 })
 export class AdressNameEditorComponent extends DefaultEditor implements AfterViewInit {
 
-    @ViewChild('name') name: ElementRef;
-    @ViewChild('url') url: ElementRef;
-    @ViewChild('htmlValue') htmlValue: ElementRef;
+
     companys;
     sure ;
     constructor(private http: Http) {

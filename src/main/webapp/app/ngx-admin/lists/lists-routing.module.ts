@@ -49,7 +49,15 @@ const routes: Routes = [{
           path: 'charts',
           loadChildren: () => new Promise(resolve => {
               (require as any).ensure([], require => {resolve(require('./charts/charts.module').ChartsModule); })  })
-      }, {
+      },{
+          path: 'ui-features',
+          loadChildren: () => new Promise(resolve => {
+              (require as any).ensure([], require => {resolve(require('./ui-features/ui-features.module').UiFeaturesModule); })  })
+      },  {
+          path: 'forms',
+          loadChildren: () => new Promise(resolve => {
+              (require as any).ensure([], require => {resolve(require('./forms/forms.module').FormsModule); })  })
+      },{
 
     path: '',
     redirectTo: 'dashboard',

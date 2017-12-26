@@ -6,13 +6,15 @@ import { JhiDateUtils } from 'ng-jhipster';
 
 import { Company } from './company.model';
 import { ResponseWrapper, createRequestOption } from '../../shared';
+import {DatePipe} from "@angular/common";
 
 @Injectable()
 export class CompanyService {
 
     private resourceUrl = '/emcloudou/api/companies';
 
-    constructor(private http: Http, private dateUtils: JhiDateUtils) { }
+    constructor(private http: Http, private dateUtils: JhiDateUtils,
+             ) { }
 
     create(company: Company): Observable<Company> {
         const copy = this.convert(company);

@@ -35,6 +35,7 @@ import {EchartsLineEleComponent} from './echarts/echarts-line-ele.component';
 import {EchartsLineLessComponent} from "./echarts/echarts-line-less.component";
 import {EchartsLineVolComponent} from "./echarts/echarts-line-vol.component";
 import {EchartsLineCurComponent} from "./echarts/echarts-line-cur.component";
+import {ChartsService} from "./charts.service";
 
 
 const components = [
@@ -74,6 +75,7 @@ const components = [
   imports: [ThemeModule, ChartsRoutingModule, AngularEchartsModule, NgxChartsModule, ChartModule],
   declarations: [...routedComponents, ...components],
     //添加
-    exports: [ ...components]
+    exports: [ ...components],
+    providers:[ChartsService]
 })
 export class ChartsModule {}

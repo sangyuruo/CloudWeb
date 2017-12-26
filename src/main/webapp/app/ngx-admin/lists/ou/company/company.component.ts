@@ -1,4 +1,4 @@
-import {Component,OnInit} from '@angular/core';
+import {  Component, OnInit} from '@angular/core';
 
 
 import 'rxjs/Rx';
@@ -9,6 +9,10 @@ import {AdressNameEditorComponent} from "./adressname-editor.component";
 import {Http} from "@angular/http";
 import {ServerDataSource} from "../../../ng2-smart-table/lib/data-source/server/server.data-source";
 import {CompanynameEditorComponent} from "./companyname-editor.component";
+import {LocalDataSource} from "../../../ng2-smart-table/lib/data-source/local/local.data-source";
+import {JhiDateUtils} from "ng-jhipster";
+
+
 
 
 @Component({
@@ -18,19 +22,10 @@ import {CompanynameEditorComponent} from "./companyname-editor.component";
         nb-card {
             transform: translate3d(0, 0, 0);
         }
-        div{
-            text-align:center;
-        }
-       ul{
-           justify-content:center;
-       }
-        li{
-            width:40px;
-            font-size:30px;
-        }
+     
     `],
 })
-export class SmartTableComponent implements OnInit {
+export class SmartTableComponent implements OnInit{
     data = [
         {
             id: 4,
@@ -127,10 +122,10 @@ export class SmartTableComponent implements OnInit {
           },
         },*/
         columns: {
-            /* id: {
+             id: {
                  title: 'ID',
                  type: 'number',
-             },*/
+             },
             companyName: {
                 title: 'Company Name',
                 type: 'html',
@@ -209,14 +204,18 @@ export class SmartTableComponent implements OnInit {
                 },
             },
 
-            /*createTime: {
+            createTime: {
                 title: 'create Time',
                 type: 'number',
-            },*/
+            },
             /*updatedBy: {
                 title: 'Updated By',
                 type: 'number',
             },*/
+            updateTime: {
+                title :'Update Time',
+                type:'number',
+            }
         },
 
         pager: {
@@ -224,24 +223,24 @@ export class SmartTableComponent implements OnInit {
 
         },
     };
-
+    Time;
     source: ServerDataSource;
-
+    company_name_search ;
     constructor(private service: OuService,
-                private http:Http
+                private http:Http,
+                //新增
+                private dateUtils: JhiDateUtils
+
     ) {
-        this.source = new ServerDataSource(http, { endPoint: '/emcloudou/api/companies' });
+        this.source = new ServerDataSource(http, { endPoint: '/emcloudou/api/companies' },
+            //新增
+            dateUtils);
     }
-
-
-
-
     ngOnInit() {
 
+       // this.source.getElements().then(data=>this.Time=data)
 
     }
-
-
 
 
     onDeleteConfirm(event): void {
@@ -254,12 +253,11 @@ export class SmartTableComponent implements OnInit {
             event.confirm.reject();
         }
     }
-
     onCreateConfirm(event) {
         if (window.confirm('确定新增不?')) {
             this.service.saveCompany(event.newData).subscribe((response) =>{
-                event.confirm.resolve(response);
 
+                event.confirm.resolve(response);
             });
         }else{
             event.confirm.reject();
@@ -270,15 +268,17 @@ export class SmartTableComponent implements OnInit {
         if (window.confirm('确定修改不?')) {
 
             this.service.updateCompany(event.newData).subscribe((response) =>{
-                this.service.getCompany().subscribe(data => (this.source.load(data)));
+
                 event.confirm.resolve(response);
                 console.log(response);
+                this.service.getCompany().subscribe(data => (this.source.load(data)));
             });
         }else{
             event.confirm.reject();
         }
     }
 
+    loadAll(){}
 
 
 }

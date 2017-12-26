@@ -6,6 +6,7 @@ import { Row } from './lib/data-set/row';
 import { deepExtend } from './lib/helpers';
 import { LocalDataSource } from './lib/data-source/local/local.data-source';
 
+
 @Component({
   selector: 'ng2-smart-table',
   styleUrls: ['./ng2-smart-table.component.scss'],
@@ -33,7 +34,7 @@ export class Ng2SmartTableComponent implements OnChanges {
   isHideSubHeader: boolean;
   isPagerDisplay: boolean;
   rowClassFunction: Function;
-
+  values:any
 
   grid: Grid;
   defaultSettings: Object = {

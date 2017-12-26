@@ -31,6 +31,8 @@ import { NbResetPasswordComponent } from './components/reset-password/reset-pass
 
 import { routes } from './auth.routes';
 import { deepExtend } from './helpers';
+import {EmCloudWebSharedModule} from "../../../shared/shared.module";
+
 
 export function nbAuthServiceFactory(config: any, tokenService: NbTokenService, injector: Injector) {
   const providers = config.providers || {};
@@ -59,6 +61,9 @@ export function nbOptionsFactory(options) {
     RouterModule.forChild(routes),
     FormsModule,
     HttpClientModule,
+      //添加
+      EmCloudWebSharedModule
+
   ],
   declarations: [
     NbAuthComponent,

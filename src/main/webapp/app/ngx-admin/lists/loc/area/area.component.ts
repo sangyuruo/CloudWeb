@@ -67,7 +67,7 @@ export class AreaComponent {
 
   constructor(private service: LocService,
               private http:Http) {
-      this.source = new ServerDataSource(http, { endPoint: '/emcloudloc/api/areas'});
+      //this.source = new ServerDataSource(http, { endPoint: '/emcloudloc/api/areas'});
   }
 
   onDeleteConfirm(event): void {

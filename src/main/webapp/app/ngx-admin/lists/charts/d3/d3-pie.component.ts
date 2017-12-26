@@ -1,6 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
 import {ApiService} from "../../../app.service";
+import {ChartsService} from "../charts.service";
 
 @Component({
   selector: 'ngx-d3-pie',
@@ -28,7 +29,7 @@ export class D3PieComponent implements OnDestroy {
 
   constructor(
       private theme: NbThemeService,
-      private apiService: ApiService,
+      private service: ChartsService,
       ) {
     this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
       const colors: any = config.variables;
@@ -39,7 +40,8 @@ export class D3PieComponent implements OnDestroy {
 
     });
 
-      this.organizationes = this.apiService.getOrganizationes()
+      this.organizationes = this.service.getOrganizationes()
+      console.log(this.organizationes)
       if( this.organizationes && this.organizationes.length ){
           for(let i=0;i<this.organizationes.length;i++){
               this.results.push({name:this.organizationes[i].orgName, value :this.organizationes[i].id })
