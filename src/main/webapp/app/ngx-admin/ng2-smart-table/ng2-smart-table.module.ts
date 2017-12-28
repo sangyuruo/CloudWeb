@@ -9,7 +9,7 @@ import { TBodyModule } from './components/tbody/tbody.module';
 import { THeadModule } from './components/thead/thead.module';
 
 import { Ng2SmartTableComponent } from './ng2-smart-table.component';
-import {UiFeaturesModule} from "../pages/ui-features/ui-features.module";
+
 
 @NgModule({
   imports: [
@@ -21,7 +21,7 @@ import {UiFeaturesModule} from "../pages/ui-features/ui-features.module";
     PagerModule,
     TBodyModule,
     THeadModule,
-      UiFeaturesModule
+
   ],
   declarations: [
     Ng2SmartTableComponent,

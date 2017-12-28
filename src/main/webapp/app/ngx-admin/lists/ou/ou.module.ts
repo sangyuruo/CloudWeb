@@ -5,9 +5,12 @@ import { ThemeModule } from '../../@theme/theme.module';
 import { TablesRoutingModule, routedComponents } from './ou-routing.module';
 import {OuService} from "./ou.service";
 import {AdressNameEditorComponent} from "./company/adressname-editor.component";
-import {Ng2SmartTableModule} from "../../ng2-smart-table/ng2-smart-table.module";
+
 import {CompanynameEditorComponent} from "./company/companyname-editor.component";
 import {UiFeaturesModule} from "../../pages/ui-features/ui-features.module";
+import {Ng2SmartTableModule} from "../../ng2-smart-table/ng2-smart-table.module";
+import {MyAppComponet} from "./company/my-app.componet";
+
 
 
 
@@ -34,6 +37,7 @@ import {UiFeaturesModule} from "../../pages/ui-features/ui-features.module";
         ...routedComponents,
         AdressNameEditorComponent,
         CompanynameEditorComponent,
+        MyAppComponet
 
 
 

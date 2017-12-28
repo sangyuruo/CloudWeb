@@ -18,7 +18,7 @@ import { NB_AUTH_TOKEN_WRAPPER_TOKEN, NbAuthJWTToken } from './@nebular/auth';
 import {NbAuthModule} from "./@nebular/auth/auth.module";
 import {NbEmailPassAuthProvider} from "./@nebular/auth/providers/email-pass-auth.provider";
 import {ApiService} from "./app.service";
-import {EmCloudWebSharedModule} from "../shared/shared.module";
+
 
 
 

@@ -6,7 +6,6 @@ export class ApiService {
 
     private organizationes: any;
     private companies: any;
-    private source: any;
     constructor(private http: Http) { }
 
 

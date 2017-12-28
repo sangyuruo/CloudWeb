@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {OuService} from "./ou.service";
+
 
 @Component({
   selector: 'ngx-tables',

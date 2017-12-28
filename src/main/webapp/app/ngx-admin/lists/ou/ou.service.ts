@@ -2,18 +2,12 @@ import { Injectable } from '@angular/core';
 
 import {Observable} from "rxjs/Observable";
 import {Http,Response} from "@angular/http";
-import {JhiDateUtils} from "ng-jhipster";
-import {Company} from "../../../entities/company/company.model";
-import {DatePipe} from "@angular/common";
+import {createRequestOption} from "../../../shared/model/request-util";
 
 
 @Injectable()
 export class OuService {
-
-
-
-    constructor(private http: Http,
-                private dateUtils: JhiDateUtils ) {
+    constructor(private http: Http) {
     }
     getCompany() {
         return this.http.get('/emcloudou/api/companies')
@@ -77,6 +71,7 @@ export class OuService {
     getOriganizations():any{
         return this.origanizations;
     }
+
 
 }
 

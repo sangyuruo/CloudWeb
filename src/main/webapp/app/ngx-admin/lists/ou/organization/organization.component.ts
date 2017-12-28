@@ -6,6 +6,8 @@ import {OuService} from "../ou.service";
 import {ServerDataSource} from "../../../ng2-smart-table/lib/data-source/server/server.data-source";
 
 
+
+
 @Component({
     selector: 'ngx-smart-table',
     templateUrl: './organization.component.html',
@@ -108,7 +110,7 @@ export class Organizationtable {
             }
         },
     };
-
+    time:string
     source:ServerDataSource;
      origanztiongs:any
     constructor(private service: OuService,

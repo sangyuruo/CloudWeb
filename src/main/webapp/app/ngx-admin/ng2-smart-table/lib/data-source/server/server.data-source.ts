@@ -20,7 +20,8 @@ export class ServerDataSource extends LocalDataSource {
 
   constructor(protected http: Http, conf: ServerSourceConf | {} = {},
               //新增一个参数
-              protected dateUtils: JhiDateUtils ) {
+              protected dateUtils: JhiDateUtils ,
+             ) {
     super();
 
     this.conf = new ServerSourceConf(conf);
@@ -120,7 +121,9 @@ export class ServerDataSource extends LocalDataSource {
     if (this.filterConf.filters) {
       this.filterConf.filters.forEach((fieldConf: any) => {
         if (fieldConf['search']) {
-          searchParams.set(this.conf.filterFieldKey.replace('#field#', fieldConf['field']), fieldConf['search']);
+            //修改
+          searchParams.set('query', fieldConf['search']);
+            //searchParams.set(this.conf.filterFieldKey.replace('#field#', fieldConf['field']), fieldConf['search']);
         }
       });
     }

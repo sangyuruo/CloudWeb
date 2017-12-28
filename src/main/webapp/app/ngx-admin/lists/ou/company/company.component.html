@@ -1,12 +1,36 @@
 
-<div >
+
+<!--
+<div class="col-md-6">
+    <nb-card>
+        <nb-card-header>
+            公司名搜索
+        </nb-card-header>
+        <nb-card-body>
+            <nb-search type="rotate-layout" tag="rotate-layout" ></nb-search>
+        </nb-card-body>
+    </nb-card>
+</div>
+-->
+
+<!--<input #search class="search" type="text" placeholder="请输入公司名" (keydown.enter)="onSearch(search.value)">-->
+
 <nb-card>
   <nb-card-header>
-    公司列表
-      <input type="search" placeholder="公司名称查询" [(ngModel)]="company_name_search"/>
-      <button class="btn btn-info btn-sm" (click)="loadAll()">搜索</button>
+
+
+      公司列表
   </nb-card-header>
   <nb-card-body>
+      <!--增加-->
+      <div class="input-group col-sm-6" id="search">
+          <input type="text" #search class="form-control" placeholder="请输入公司名或地址名">
+          <span class="input-group-btn">
+            <button class="btn btn-danger" (click)="onSearch(search.value)">
+              搜索
+            </button>
+          </span>
+      </div>    <!--增加-->
     <ng2-smart-table
         [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)"
         (createConfirm)="onCreateConfirm($event)"
@@ -14,4 +38,7 @@
     </ng2-smart-table>
   </nb-card-body>
 </nb-card>
-</div>
+  <p id="test">测试</p>
+
+
+
