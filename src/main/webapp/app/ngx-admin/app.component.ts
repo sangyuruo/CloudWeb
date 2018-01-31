@@ -32,5 +32,6 @@ export class AppComponent implements OnInit {
       this.apiService.initCompointsDatas();
       //地址
       this.apiService.initAddressesDatas();
+      this.apiService.initMenus();
   }
 }
