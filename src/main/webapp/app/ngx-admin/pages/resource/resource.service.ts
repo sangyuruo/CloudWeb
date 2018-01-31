@@ -10,17 +10,17 @@ export class ResourceService {
   constructor(private http:Http){}
 
     getDataResource(){
-        return this.http.get('/emcloudresource/api/resources?size=2000')
+        return this.http.get('/emclouduaa/api/resources?size=2000')
             .map(res => res.json())
     }
     deleteResource(id: number): Observable<Response> {
-        return this.http.delete(`${'/emcloudresource/api/resources'}/${id}`);
+        return this.http.delete(`${'/emclouduaa/api/resources'}/${id}`);
     }
     createResource(date) {
-        return this.http.post('/emcloudresource/api/resources',date).map( res =>res.json());
+        return this.http.post('/emclouduaa/api/resources',date).map( res =>res.json());
     }
     updateResource(date):  Observable<Response>{
-        return this.http.put('/emcloudresource/api/resources',date).map( res =>res.json());
+        return this.http.put('/emclouduaa/api/resources',date).map( res =>res.json());
     }
 
 }
