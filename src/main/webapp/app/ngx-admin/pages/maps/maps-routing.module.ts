@@ -11,6 +11,7 @@ import {DemoPanoramaComponent} from "./bdmaps/panorama.component";
 import {AbmComponent} from "./bdmaps/core/abm.component";
 import {AbmPanoramaComponent} from "./bdmaps/core/abm-panorama.component";
 
+
 const routes: Routes = [{
   path: '',
   component: MapsComponent,
@@ -60,4 +61,5 @@ export const routedComponents = [
 
     AbmComponent,
     AbmPanoramaComponent
+
 ];

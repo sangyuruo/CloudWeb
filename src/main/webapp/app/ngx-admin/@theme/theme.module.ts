@@ -36,7 +36,11 @@ import {
 import { DEFAULT_THEME } from './styles/theme.default';
 import { COSMIC_THEME } from './styles/theme.cosmic';
 import {HomeComponent} from "./components/home/home.component";
-import {BaiduMapsComponent} from "../pages/maps/baidu-maps/baidu-maps.component";
+
+
+import {LoaderService} from 'angular-baidu-maps/core/loader.service';
+
+
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 
@@ -70,8 +74,6 @@ const COMPONENTS = [
     //增加首页
     HomeComponent,
 
-    /*//增加地图
-    BaiduMapsComponent*/
 
 
 ];
@@ -103,7 +105,11 @@ export class ThemeModule {
   static forRoot(): ModuleWithProviders {
     return <ModuleWithProviders>{
       ngModule: ThemeModule,
-      providers: [...NB_THEME_PROVIDERS],
+      providers: [...NB_THEME_PROVIDERS,
+          //增加百度地图
+        // AbmConfig,
+          LoaderService
+      ],
     };
   }
 }

@@ -7,7 +7,7 @@ import { AbmConfig } from './abm.config';
 declare const BMap: any;
 
 @Component({
-    selector: 'abm-map',
+    selector: 'map-baidu',
     template: ``,
     styles: [ `
         .angular-baidu-maps-container { display:block; width:100%; height:100%; }
@@ -25,7 +25,7 @@ export class AbmComponent implements OnChanges, OnDestroy {
     private map: any = null;
 
     constructor(private el: ElementRef,
-                private COG: AbmConfig, 
+                private COG: AbmConfig,
                 private loader: LoaderService,
                 private zone: NgZone) { }
 

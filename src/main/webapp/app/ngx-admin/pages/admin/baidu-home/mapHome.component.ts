@@ -1,23 +1,39 @@
-import { NgZone, OnDestroy } from '@angular/core';
+import {Input, NgZone, OnDestroy} from '@angular/core';
 /* tslint:disable */
 import { Component, OnInit, ViewEncapsulation, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { AbmComponent } from 'angular-baidu-maps';
+import {NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
+
+import {NbSidebarService} from "@nebular/theme";
+import {LoginModalService} from "../../../../shared/login/login-modal.service";
+
 
 declare const BMap: any;
-declare const BMAP_SATELLITE_MAP: any;
 
 @Component({
-    selector: 'demo',
-    templateUrl: './demo.component.html',
-    styleUrls: ['./demo.component.scss'],
+    selector: 'mapHome',
+    templateUrl: './mapHome.component.html',
+    styleUrls: ['./mapHome.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class DemoComponent implements OnDestroy {
+export class MapHomeComponent implements OnDestroy {
+
+    @Input() position = 'normal';
+
+
+    //添加登录弹出窗口
+    modalRef: NgbModalRef;
+
     options: any = {}
     status: string = '';
     @ViewChild('map') mapComp: AbmComponent;
 
-    constructor(private el: ElementRef, private zone: NgZone) { }
+    constructor(private el: ElementRef, private zone: NgZone,
+                private sidebarService: NbSidebarService,
+
+                //添加登录弹出窗口
+    private loginModalService: LoginModalService,
+    ) { }
 
     private _map: any;
     onReady(map: any) {
@@ -47,7 +63,7 @@ export class DemoComponent implements OnDestroy {
         map.addEventListener('tilesloaded', () => {
             this.status = '地图加载完毕';
         });
-        map.addEventListener('click', this._click.bind(this));
+      //  map.addEventListener('click', this._click.bind(this));
 
         this.infoWindow();
     }
@@ -65,6 +81,7 @@ export class DemoComponent implements OnDestroy {
     }
 
     infoWindow() {
+
         // 创建地图实例
         var point = new BMap.Point(112.407672, 28.549992);
         // 创建点坐标
@@ -72,15 +89,13 @@ export class DemoComponent implements OnDestroy {
         // 初始化地图， 设置中心点坐标和地图级别
         var marker = new BMap.Marker(point);
         this._map.addOverlay(marker);
-    }
-
-    // 卫星
-    satelliteOptions: any;
-    private mapSatellite: any;
-    onReadySatellite(map: any) {
-        map.centerAndZoom(new BMap.Point(112.407672, 28.549992), 11);
-        map.setMapType(BMAP_SATELLITE_MAP);
-        this.mapSatellite = map;
+        // marker.addEventListener('click', function (evt) {
+        //     var point = evt.target.point;
+        //     var info  = '点击Marker坐标: ' + point.lng.toFixed(112.407672) + ', ' + point.lat.toFixed(28.549992);
+        //     alert(info);
+        // });
+        //添加登录弹出窗口
+        this.modalRef = this.loginModalService.open();
     }
 
     ngOnDestroy(): void {

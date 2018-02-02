@@ -23,7 +23,10 @@
     "@ng-bootstrap/ng-bootstrap": "1.0.0-beta.5",
     "@swimlane/ngx-charts": "5.2.0",
     "angular-baidu-maps": "^1.0.1",
+<<<<<<< HEAD
     "angular2-baidu-map": "^4.1.0",
+=======
+>>>>>>> dev_hxxn
     "angular2-chartjs": "^0.3.0",
     "angular2-toaster": "4.0.0",
     "bootstrap": "4.0.0-beta.2",
